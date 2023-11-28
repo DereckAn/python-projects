@@ -11,4 +11,4 @@ def convert_to_webp(image_path):
         print(f'Error: {e}')
 
 # Prueba la función con una imagen
-convert_to_webp('./f.png')
+convert_to_webp('./sl.jpg')

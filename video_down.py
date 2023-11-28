@@ -19,11 +19,11 @@ title.pack(pady=10)
 
 # & Link input
 url_tex = tk.StringVar() # Textvariable for input
-link = customtkinter.CTkEntry(app, width=400, height=40, textvariable=url_tex)  
+link = customtkinter.CTkEntry(app, width=400, height=40, textvariable=url_tex)
 link.pack(pady=10)
 
 # Progress bar (extra - not necessary)
-progress = customtkinter.CTkProgressBar(app,  height=10) 
+progress = customtkinter.CTkProgressBar(app,  height=10)
 progress.set(0)
 progress.pack(pady=10)
 
@@ -43,14 +43,14 @@ def progress_function(stream, chunk, bytes_remaining):
 download = customtkinter.CTkButton(app, text='Download', width=400, height=40, command=lambda: download_video(url_tex.get())) # note: Get input from url_tex
 download.pack(pady=10) # note: si no ponemos el .pack no se mostrara en la pantalla el boton
 
-# & Function to download video    
+# & Function to download video
 def download_video(url):
     try:
         yt = YouTube(url, on_progress_callback=progress_function)
         video = yt.streams.get_highest_resolution()
         video.download()
         title.configure(text=f'{yt.title}', text_color='green')
-        finishLabel.configure(text='', text_color='white') # note: esto es para volver a restableces los colores del label. No se si sea tan necesario 
+        finishLabel.configure(text='', text_color='white') # note: esto es para volver a restableces los colores del label. No se si sea tan necesario
         print('Download completed')
         finishLabel.configure(text=f'You have downloaded {yt.title}', text_color='green')
         
@@ -63,5 +63,5 @@ def download_video(url):
 finishLabel = customtkinter.CTkLabel(app, text='', font=('Arial', 20))
 finishLabel.pack(pady=10)
 
-# & Run app 
+# & Run app
 app.mainloop()
