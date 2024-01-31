@@ -1,3 +1,4 @@
+#pip install pillow
 from PIL import Image
 
 # Esto codigo es para convertir una imagen de png o jpg a webp
@@ -11,4 +12,4 @@ def convert_to_webp(image_path):
         print(f'Error: {e}')
 
 # Prueba la función con una imagen
-convert_to_webp('./sl.jpg')
+convert_to_webp('./L.JPG')
