@@ -1,3 +1,4 @@
+#pip install pillow
 from PIL import Image
 
 # Esto codigo es para convertir una imagen de png o jpg a webp
