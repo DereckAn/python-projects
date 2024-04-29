@@ -11,4 +11,9 @@ def convert_to_webp(image_path):
         print(f'Error: {e}')
 
 # Prueba la función con una imagen
-convert_to_webp('./sl.jpg')
+# convert_to_webp('./twitter.png')
+
+lista_de_imagenes = ['./comida (1).jpg', './comida (2).jpg', './comida (3).jpg', './comida (4).jpg', './comida (5).jpg', './comida (6).jpg', './comida (7).jpg', './comida (8).jpg', './comida (9).jpg', './comida (10).jpg', './comida (11).jpg', './comida (12).jpg']
+
+for imagen in lista_de_imagenes:
+    convert_to_webp(imagen)
