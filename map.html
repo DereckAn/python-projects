@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="/JS/Core"></script>
+        <script type="text/javascript">
+            
+            function getCoordenates(lineString){
+                // delete "LINESTRING(" at the beginning and ")" at the end, and modify the string ","
+                var coords = lineString.slice(11, -1).split(",");
+
+                // Convierte [longitud, latitud]
+                var coordList = coords.map((coord)=> {
+                    var parts = coord.trim().split(" ");
+                    return [parseFloat(parts[0]), parseFloat(parts[1])];
+                });
+
+
+                console.log("lista de coordenadas:", coordList);
+                
+                // Split lat and long
+                
+                return coordList;
+                
+            }
+
+
+            function rotateLineString(lineString) {
+                //TODO: Implement
+                
+                return coordList;
+            }
+
+            function convertLineStringToObj(lineString) {
+                // TODO: Implement
+                return obj;
+            }
+            
+            var lineStringExample = "LINESTRING(-113.994140625 42.00032514831619,-111.09375000000001 41.96765920367815,-111.04980468750001 41.07935114946898,-109.07226562500001 41.04621681452065,-109.0283203125 37.020098201368114,-113.994140625 37.020098201368114,-113.994140625 41.934976500546554)";
+
+            
+            
+            getCoordenates(lineStringExample);
+            
+
+
+            // Object format that the map uses to render the linestring
+            var lineObj = {
+                "data": [
+                    [
+                        [
+                            [42.00032514831619, -113.994140625],
+                            [41.96765920367815, -111.09375000000001],
+                            [41.07935114946898, -111.04980468750001],
+                            [41.04621681452065, -109.07226562500001],
+                            [37.020098201368114, -109.0283203125],
+                            [37.020098201368114, -113.994140625],
+                            [41.93497650054658, -113.994140625]
+                        ],
+                        "Lines"
+                    ]
+                ],
+                "columns": [{ "name": "geom" }, { "name": "name" }]
+            };
+
+            function dataToDisplay(options) {
+                return lineObj;
+            }
+
+            ml.onload(function() {
+                var map = ml.map("mapDiv");
+                var layer = ml.layer(map, {
+                    "query": {
+                        "select": {
+                            "type": "geo.client.line"
+                        },
+                        "table": {
+                            "retrieveData": dataToDisplay
+                        }
+                    },
+                    "style": {
+                        "method": "rules",
+                        "rules": [
+                            {
+                                "style": {
+                                    "fillColor": "128-128-0-255",
+                                    "width": 5
+                                },
+                                "where": {
+                                    "col": "*",
+                                    "test": "CatchAll",
+                                    "value": 0
+                                },
+                                "constraint": {}
+                            }
+                        ]
+                    },
+                    "visible": true,
+                    "onClick": "template",
+                    "clickTemplate": "{name}",
+                    "onHover": "template",
+                    "hoverTemplate": "{name}",
+                    "hoverFieldsCommaDel": "name"
+                });                
+            });
+
+        </script>
+    </head>
+    <body>
+        <div id="mapDiv" style="width:100%;height:100%;"></div>
+    </body>
+</html>

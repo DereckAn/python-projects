@@ -8,6 +8,7 @@ linestring = "LINESTRING(-113.994140625 42.00032514831619,-111.09375000000001 41
 coords = linestring.replace("LINESTRING(", "").replace(")", "").split(",")
 
 print(f"Coordenadas: {coords}")
+print(f"Coordenadas: {type(coords)}")
 
 # Separar las coordenadas en listas de latitudes y longitudes
 lats = [float(coord.split()[1]) for coord in coords]
@@ -32,7 +33,10 @@ def rotate(origin, point, angle):
     return qx, qy
 
 # Definir el punto de origen para la rotación
-origin = (sum(lons) / len(lons), sum(lats) / len(lats))
+# origin = (sum(lons) / len(lons), sum(lats) / len(lats))
+origin = ((max(lons) + min(lons)) / 2, (max(lats) + min(lats)) / 2)
+print(f"Origen: {origin}")
+print(f"Origen: {type(origin)}")
 
 # Definir el ángulo de rotación
 angle = math.radians(0)  # 90 grados
@@ -57,6 +61,9 @@ plt.plot(rotated_lons, rotated_lats, color='red')
 # Dibujar el punto de origen
 plt.scatter(*origin, color='blue')
 
+# Agregar las coordenadas de cada punto
+for i, coord in enumerate(rotated_coords):
+    plt.text(coord[0], coord[1], f"{coord[0]:.2f}, {coord[1]:.2f}", fontsize=8)
 
 # Mostrar el gráfico
 plt.show()
