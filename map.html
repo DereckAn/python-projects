@@ -1,111 +1,129 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script type="text/javascript" src="/JS/Core"></script>
-        <script type="text/javascript">
-            
-            function getCoordenates(lineString){
-                // delete "LINESTRING(" at the beginning and ")" at the end, and modify the string ","
-                var coords = lineString.slice(11, -1).split(",");
+  <head>
+    <script type="text/javascript" src="/JS/Core"></script>
+    <script type="text/javascript">
+      function getCoordenates(lineString) {
+        var coords = lineString.slice(11, -1).split(",");
+        var coordList = coords.map((coord) => {
+          var parts = coord.trim().split(" ");
+          return [parseFloat(parts[1]), parseFloat(parts[0])];
+        });
+        return coordList;
+      }
 
-                // Convierte [longitud, latitud]
-                var coordList = coords.map((coord)=> {
-                    var parts = coord.trim().split(" ");
-                    return [parseFloat(parts[0]), parseFloat(parts[1])];
-                });
+      function rotate(origin, point, angle) {
+        let radians = (angle * Math.PI) / 180.0;
+        let nx =
+          Math.cos(radians) * (point[0] - origin[0]) -
+          Math.sin(radians) * (point[1] - origin[1]) +
+          origin[0];
+        let ny =
+          Math.sin(radians) * (point[0] - origin[0]) +
+          Math.cos(radians) * (point[1] - origin[1]) +
+          origin[1];
+        return [nx, ny];
+      }
 
+      function rotateLineString(lineString) {
+        let gradesInput = document.getElementById("gradesInput")
+          .value;
+        let lonList = [];
+        let latList = [];
+        lineString.forEach((coord) => {
+          lonList.push(parseFloat(coord[0]));
+          latList.push(parseFloat(coord[1]));
+        });
 
-                console.log("lista de coordenadas:", coordList);
-                
-                // Split lat and long
-                
-                return coordList;
-                
-            }
+        let origin = [
+          (Math.max(...lonList) + Math.min(...lonList)) / 2,
+          (Math.max(...latList) + Math.min(...latList)) / 2,
+        ];
 
+        let rotatedCoords = lineString.map((coord) =>
+          rotate(origin, coord, gradesInput)
+        );
+        return rotatedCoords;
+      }
 
-            function rotateLineString(lineString) {
-                //TODO: Implement
-                
-                return coordList;
-            }
+      function convertLineStringToObj(newCoords) {
+        return {
+          data: [[newCoords, "Lines"]],
+          columns: [{ name: "geom" }, { name: "name" }],
+        };
+      }
 
-            function convertLineStringToObj(lineString) {
-                // TODO: Implement
-                return obj;
-            }
-            
-            var lineStringExample = "LINESTRING(-113.994140625 42.00032514831619,-111.09375000000001 41.96765920367815,-111.04980468750001 41.07935114946898,-109.07226562500001 41.04621681452065,-109.0283203125 37.020098201368114,-113.994140625 37.020098201368114,-113.994140625 41.934976500546554)";
+      function dataToDisplay(options) {
+        let lineStringExample = document.getElementById("lineStringInput")
+          .value;
+        let rotatedCoords = rotateLineString(getCoordenates(lineStringExample));
+        let lineObj = convertLineStringToObj(rotatedCoords);
+        return lineObj;
+      }
 
-            
-            
-            getCoordenates(lineStringExample);
-            
+      function drawMap() {
+        var map = ml.map("mapDiv");
+        var layer = ml.layer(map, {
+          query: {
+            select: {
+              type: "geo.client.line",
+            },
+            table: {
+              retrieveData: dataToDisplay,
+            },
+          },
+          style: {
+            method: "rules",
+            rules: [
+              {
+                style: {
+                  fillColor: "128-128-0-255",
+                  width: 5,
+                },
+                where: {
+                  col: "*",
+                  test: "CatchAll",
+                  value: 0,
+                },
+                constraint: {},
+              },
+            ],
+          },
+          visible: true,
+          onClick: "template",
+          clickTemplate: "{name}",
+          onHover: "template",
+          hoverTemplate: "{name}",
+          hoverFieldsCommaDel: "name",
+        });
+      }
 
-
-            // Object format that the map uses to render the linestring
-            var lineObj = {
-                "data": [
-                    [
-                        [
-                            [42.00032514831619, -113.994140625],
-                            [41.96765920367815, -111.09375000000001],
-                            [41.07935114946898, -111.04980468750001],
-                            [41.04621681452065, -109.07226562500001],
-                            [37.020098201368114, -109.0283203125],
-                            [37.020098201368114, -113.994140625],
-                            [41.93497650054658, -113.994140625]
-                        ],
-                        "Lines"
-                    ]
-                ],
-                "columns": [{ "name": "geom" }, { "name": "name" }]
-            };
-
-            function dataToDisplay(options) {
-                return lineObj;
-            }
-
-            ml.onload(function() {
-                var map = ml.map("mapDiv");
-                var layer = ml.layer(map, {
-                    "query": {
-                        "select": {
-                            "type": "geo.client.line"
-                        },
-                        "table": {
-                            "retrieveData": dataToDisplay
-                        }
-                    },
-                    "style": {
-                        "method": "rules",
-                        "rules": [
-                            {
-                                "style": {
-                                    "fillColor": "128-128-0-255",
-                                    "width": 5
-                                },
-                                "where": {
-                                    "col": "*",
-                                    "test": "CatchAll",
-                                    "value": 0
-                                },
-                                "constraint": {}
-                            }
-                        ]
-                    },
-                    "visible": true,
-                    "onClick": "template",
-                    "clickTemplate": "{name}",
-                    "onHover": "template",
-                    "hoverTemplate": "{name}",
-                    "hoverFieldsCommaDel": "name"
-                });                
-            });
-
-        </script>
-    </head>
-    <body>
-        <div id="mapDiv" style="width:100%;height:100%;"></div>
-    </body>
+      ml.onload(drawMap);
+    </script>
+  </head>
+  <body>
+    <div
+      style="
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        z-index: 10000;
+        background-color: transparent;
+        top: 80%;
+        left: 40%;
+        border: 2px solid red;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        padding: 20px;
+        gap: 5px;
+        border-radius: 10px;
+      "
+    >
+      <label for="lineStringInput">Ingrese LineString:</label>
+      <input type="text" id="lineStringInput" name="lineStringInput" />
+      <input type="number" id="gradesInput" name="gradesInput" />
+      <button onclick="drawMap()">Dibujar Mapa</button>
+    </div>
+    <div id="mapDiv" style="width: 100%; height: 100%;"></div>
+  </body>
 </html>
