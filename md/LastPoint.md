@@ -8,7 +8,7 @@
 
 Returns the last point in a MultiPoint geometry, or null if none
 
-**shapeset** - The shapeset to operate on
+**mpt** - MultiPoint
 
 ## Return Type
 
@@ -18,11 +18,11 @@ Returns the last point in a MultiPoint geometry, or null if none
 
 | Parameter |              | Type(s) | Description | `null` Behavior |
 | --------- | ------------ | ------- | ----------- | --------------- |
-| shapeset   | **required** |         |             |                 |
+| mpt   | **required** |   `Column<Double>` |  Returns the last point in a MultiPoint geometry   |  None   |
 
 ## Usage
 
-`LastPoint` may be used in the query `select` clauses.
+`LastPoint` may be used in the query `select` and `where` clauses.
 
 <span style='color:red'> -- ask later about the where clause and how to use it </span>
 

@@ -23,7 +23,8 @@ Optional. Default: False
 
 | Parameter |              | Type(s)           | Description                                    | `null` Behavior |
 | --------- | ------------ | ----------------- | ---------------------------------------------- | --------------- |
-| geoObj    | **required** | <code>Poly</code> | The geometry to count the number of shapes in. |
+| geoObj    | **required** | <code>ShapeSetDouble</code> | The geometry to count the number of shapes in. |
+| includeHoles    | **optional** | <code>Boolean</code> | Only applicable to polygons.
 
 ## Usage
 

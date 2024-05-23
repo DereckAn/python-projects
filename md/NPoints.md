@@ -5,10 +5,13 @@
 ## Description
 
 `NPoints( geoObj )`
+`NPoints ( geoPoint )`
+`NPoints ( multipoint )`
 
-Returns the number of points inside the geometry.
+Returns the number of points inside the shapeset.
 
-**geoObj** - The geometry data
+**geoObj** | **multipoint** - The geometry data
+
 
 ### Return Type
 
@@ -18,7 +21,9 @@ Returns the number of points inside the geometry.
 
 | Parameter |              | Type(s)           | Description                                    | `null` Behavior |
 | --------- | ------------ | ----------------- | ---------------------------------------------- | --------------- |
-| geoObj    | **required** | <code>Poly</code> | The geometry to count the number of points in. |
+| geoObj    | **required** | <code>Poly</code> | The geometry to count the number of points in. | None |
+| geoPoint  | **required** | <code>Point</code> | The geometry to count the number of points in. | None |
+| multipoint  | **required** | <code>MultiPoint</code> | The geometry to count the number of points in. | None |
 
 <span style='color:red'> -- ask later about the example and about type in the table </span>
 
