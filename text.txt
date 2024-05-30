@@ -4,3 +4,120 @@
 4 cats
 1 I
 5 you
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="/JS/Core"></script>
+		<script type="text/javascript">
+            
+            
+            
+            var account = "test";
+var tableName = "mytablewithint32";
+var schema = {
+                "name": "Hola",
+                "MyJsonColumn": "Poly",
+                "MyInt32Column": "Poly"
+            };
+
+var tableData = {
+            accountCode: account,
+            tableName: tableName,
+            extendedImportConfig: JSON.stringify(schema),
+            primaryKeyColumn: "name"
+        }
+        ml.apimanager.performRequest({
+            "action": "table/createemptytable",
+            "remote": tableData
+        }, true, false, {},
+            (r => {
+                console.log(`Created empty table: "${account}/${tableName}"`)
+                var names = []
+                var types = []
+                for (var name in schema) {
+                    names.push(name)
+                    types.push(schema[name])
+                }
+            }), (f => {
+                console.log(`Failed to create empty table "${account}/${tableName}"; ${f.errors ? f.errors.join(', ') : ""}`)
+            })
+        )
+
+            
+            //----------------------------------------------------------------
+            
+            var t = {
+    account: "test",
+    table: "mytablewithint32"
+};
+
+var tableData = {
+    tableName: "test/mytablewithint32",
+    primaryKey: "name",
+    columns: ["name","MyJsonColumn","MyInt32Column"],
+    multiValues: [
+        ["abc", JSON.stringify({"def": "123"}), "MULTIPOLYGON(((-80.33167719841 25.752285027612, -80.3309141099453 25.7523212648234, -80.3308443725109 25.7505238858123, -80.3308537602425 25.7502871322486, -80.3316020965576 25.750264181623, -80.3316530585289 25.7516206767768, -80.33167719841 25.752285027612)))"],
+        ["abcd", JSON.stringify({"def":"789"}), null],
+         ["abcde", JSON.stringify({"def": "654"}), "MULTIPOLYGON(((-80.3289359807968 25.6557630771671, -80.32860070467 25.6564690651575, -80.3274232149124 25.6589569141861, -80.3262899816036 25.661358884394, -80.3257602453232 25.6625157294829, -80.3239819407463 25.6664080621097, -80.3236292302608 25.6664056445512, -80.3251728415489 25.6630947522255, -80.3270718455315 25.6589823001332, -80.3283981978893 25.6562417955071, -80.3289037942886 25.6551598409677, -80.3292270004749 25.6551489609281, -80.3289359807968 25.6557630771671)))"],
+        
+    ],
+    deleteByPrimaryKey: false
+};
+
+ml.data.table.row.editMultiRow(tableData,
+                    (err, response) => {
+                        if (response.success) {
+                            console.log(`Uploaded seed data for : "${t.account}/${t.table}"`);
+                        }
+                        else {
+                            console.log(`Error occurred while uploading seed data for : "${t.account}/${t.table}"`);
+                        }
+                    }, true, true);
+            
+			ml.onload(async () => {
+				const q = ml.query();
+				//const q = ml.data.query.getQueryFromJSON();
+				//const q = ml.query();
+				q.from("mytablewithint32");
+				q.select("NShapes(MyInt32Column)");
+                
+				//q.from("");
+				//q.select("");
+				//q.fullTextSearch("");
+				//q.where("", "", "");
+				//q.groupby("");
+				//q.withGeo(true);
+				//q.take(100);
+				
+				try {
+					const { data, query } = await q.runPromise();
+					ml.$("#dataDiv").html(ml.util.JsonHighlight(data));
+				} catch (error) {
+					ml.$("#dataDiv").html(ml.util.JsonHighlight(error));
+				}
+			});
+			//Set sourceURL to support debugging this script.
+			//# sourceURL=ml-example-e8a6618a-1bb6-427b-9429-bfb5088ae1fb.js
+		</script>
+	</head>
+	<body>
+		<div id="dataDiv" style="width:100%;height:100%;"></div>
+	</body>
+</html>
+
+
+
+
+
+"POINT (-2.111680031 57.14606857)",
+        "POINT (-99.850806 16.845658)",
+        "POINT (0.073581 38.640138)",
+        "POINT (4.879925 52.354554)",
+        "POINT (8.241484165 48.75945645)",
+        "POINT (115.161172 -8.692383)",
+        "POINT (-1.338639975 52.05516052)",
+        "POINT (2.172895 41.385717)",
+        "POINT (-43.928436 -19.875114)",
+        "POINT (13.32131378 52.49737403)"
