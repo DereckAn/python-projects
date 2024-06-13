@@ -1,0 +1,5 @@
+| Parameter | Required     | Type(s)  | Description                                                                           | `null` Behavior |
+|:----------|:-------------|:---------|:--------------------------------------------------------------------------------------|:----------------|
+| `a`       | **Required** | `Double` | The latitude of the first point.                                                      | Returns `null`  |
+| `b`       | **Required** | `Double` | The longitude of the first point.                                                     | Returns `null`  |
+| `unit`    | Optional     | `Double` | Unit of measurement: m (meters), km (kilometers), mi (miles), or nmi (Nautical miles) | Defaults to `m` |
