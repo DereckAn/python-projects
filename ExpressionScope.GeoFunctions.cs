@@ -2742,6 +2742,7 @@ public partial class ExpressionScope {
 		else
 			return default;
 	}
+	
 
 	[MethodDesc("Geo", "Creates a multipoint from a valid WKT string.")]
 	[ExecutionOptions(canBeCalculatedDuringCompileTime: true)]

@@ -2,58 +2,19 @@
 
 ## Description
 
-`CreateLine ( mpt )`
+`CreateLine(mpt)` - Converts the provided Multipoint geometry into a Line. Returns null if input geometry is null.
 
-Converts the provided Multipoint geometry into a Line. Returns null if input geometry is null.
+`CreateLine(distanceLimit, unit)` - Creates lines from the set of points, after sorting the points by the values in the second column and splitting according to the distance limit specified.
 
-`CreateLine ( distanceLimit, unit )`
+`CreateLine(timeSpan, distanceLimit, unit)` - Creates lines from the set of points, after sorting the points by the values in the second column and splitting according to a combination of the time span specified and the distance limit.
 
-Creates lines from the set of points, after sorting the points by the values in the second column and splitting according to the distance limit specified.
+`CreateLine(timeSpan)` - Creates a lines from the set of points, after sorting the points by the values in the second column and splitting according to the time span specified.
 
-**distanceLimit**
+`CreateLine(timeSpan, distanceLimit, distanceThreshold, unit)` - Creates lines from the set of points, after sorting the points by the values in the second column and splitting according to a combination of the time span specified and the distance limit.
 
-**unit** - Optional. Default: K
+`CreateLine ( )` - Creates a line from the set of points, after sorting the points by the values in the second column.
 
-`CreateLine ( timeSpan, distanceLimit, unit )`
-
-Creates lines from the set of points, after sorting the points by the values in the second column and splitting according to a combination of the time span specified and the distance limit.
-**timeSpan**
-
-**distanceLimit**	
-
-**unit** - Optional. Default: K
-
-`CreateLine ( timeSpan )`
-
-Creates a lines from the set of points, after sorting the points by the values in the second column and splitting according to the time span specified.
-
-`CreateLine ( timeSpan, distanceLimit, distanceThreshold, unit )`
-
-Creates lines from the set of points, after sorting the points by the values in the second column and splitting according to a combination of the time span specified and the distance limit.
-
-**timeSpan**	
-
-**distanceLimit**	
-
-**distanceThreshold** - Optional. Default: cumulative
-
-**unit** - Optional. Default: K
-
-`CreateLine ( )`
-
-Creates a line from the set of points, after sorting the points by the values in the second column.
-
-`CreateLine ( from, to, splitAtDateLine )`
-
-Creates a line from two points.
-
-**from**	
-
-**to**	
-
-**splitAtDateLine** - Optional. Default: True
-
-
+`CreateLine(from, to, splitAtDateLine)` - Creates a line from two points.
 
 ### Return Type
 
@@ -61,80 +22,60 @@ Creates a line from two points.
 
 ## Parameters
 
-| Parameter |              | Type(s)                     | Description                           | `null` Behavior |
-| --------- | ------------ | --------------------------- | ------------------------------------- | --------------- |
-| geoObj    | **required** | <code>ShapeSetDouble</code> | The geometry to create the line from. |
+| Parameter           | Required | Type(s)       | Description                  | `null` Behavior        |
+| :------------------ | :------- | :------------ | :--------------------------- | :--------------------- |
+| `unit`              | Optional | `Point`, `XY` | The start point of the line. | Defaults `k`           |
+| `distanceThreshold` | Optional | `Point`, `XY` | The end point of the line.   | Defaults `cumualitive` |
+| `splitAtDateLine`   | Optional | `Point`, `XY` | The end point of the line.   | default `True`       |
 
 ## Usage
 
-`CreateLine` may be used in the query `select` and `where` clauses.`
+`CreateLine` may be used in the query SELECT and WHERE clauses for analyzing data and applying conditional logic.
+
+### Notes
+
+- `CreateLine` only works within `Line` range of values (i.e. -2,147,483,648 to 2,147,483,647)
+
+## Examples
 
 ### JSON
 
-```json
-{
-  "table": {
-    "name": "Miami/Census_Block_2020"
-  },
-  "sqlselect": ["CreateLine(Census_Block_2020)"]
-}
-```
+#### Create a line from a point to another point
+
+- This example creates a line from a point to another point.
 
 ```json
 {
   "table": {
-    "name": "Miami/Census_Block_2020"
+    "name": "test/hotels"
   },
-  "where": [
-    [
-      {
-        "exp": "CreateLine(Census_Block_2020) = Census_Block_2020"
-      }
-    ]
-  ],
-  "sqlselect": ["CreateLine(Census_Block_2020)"]
+  "sqlselect": [
+    "CreateLine(Point(12.345453, -34.56778), Point(12.345453, -34.56778))"
+  ]
 }
 ```
 
 ### SQL
 
 ```sql
-SELECT CreateLine(Census_Block_2020) as Line
-FROM Miami.Census_Block_2020;
-```
-
-```sql
-SELECT Census_Block_2020
-FROM Miami.Census_Block_2020
-WHERE CreateLine(Census_Block_2020) = Census_Block_2020;
+SELECT CreateLine(Point(12.345453, -34.56778), Point(12.345453, -34.56778)) AS Line
+FROM test.hotels;
 ```
 
 ### JavaScript
 
-```javascript
+```js
 const q = ml.query();
-q.from("Miami/Census_Block_2020");
-q.select("CreateLine(Census_Block_2020)");
-```
-
-```javascript
-const q = ml.query();
-q.from("Miami/Census_Block_2020");
-q.where("CreateLine(Census_Block_2020) = Census_Block_2020");
-q.select("CreateLine(Census_Block_2020)");
+q.from("test/hotels");
+q.select(
+  "CreateLine(Point(12.345453, -34.56778), Point(12.345453, -34.56778)) AS Line"
+);
 ```
 
 ### C
 
 ```csharp
 var q = new Query();
-q.From("Miami/Census_Block_2020");
-q.Select("CreateLine(Census_Block_2020)");
-```
-
-```csharp
-var q = new Query();
-q.From("Miami/Census_Block_2020");
-q.Where("CreateLine(Census_Block_2020) = Census_Block_2020");
-q.Select("CreateLine(Census_Block_2020)");
+q.From("test/hotels");
+q.Select("CreateLine(Point(12.345453, -34.56778), Point(12.345453, -34.56778)) AS Line");
 ```
