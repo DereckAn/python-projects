@@ -1,43 +1,196 @@
-import tkinter as tk
-import customtkinter
+# created by @dereckangeles
+# 2024-06-13
+# To make the documentation faster
 
-# & System settings
-customtkinter.set_appearance_mode('System')
-customtkinter.set_default_color_theme('blue')
+import flet as ft
 
-# & App frame
-app = customtkinter.CTk()
-app.geometry('1080x480')
-app.title('Make your MarkDown file')
+class Parameter(ft.Column):
+    def __init__(self, task_name, task_status_change, task_delete):
+        super().__init__()
+        self.completed = False
+        self.task_name = task_name
+        self.task_status_change = task_status_change
+        self.task_delete = task_delete
+        self.display_task = ft.Checkbox(
+            value=False, label=self.task_name, on_change=self.status_changed
+        )
+        self.edit_name = ft.TextField(expand=1)
 
-# Define los campos de entrada
-campos = [
-    {"label": "Title", "font": ('Arial', 20), "height": 40},
-    {"label": "Function", "font": ('Arial', 15), "height": 40},
-    {"label": "Description", "font": ('Arial', 15), "height": 100},
-    {"label": "Returno", "font": ('Arial', 15), "height": 40},
-]
+        self.display_view = ft.Row(
+            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            controls=[
+                self.display_task,
+                ft.Row(
+                    spacing=0,
+                    controls=[
+                        ft.IconButton(
+                            icon=ft.icons.CREATE_OUTLINED,
+                            tooltip="Edit To-Do",
+                            on_click=self.edit_clicked,
+                        ),
+                        ft.IconButton(
+                            ft.icons.DELETE_OUTLINE,
+                            tooltip="Delete To-Do",
+                            on_click=self.delete_clicked,
+                        ),
+                    ],
+                ),
+            ],
+        )
 
-# Crea los widgets para cada campo# Crea los widgets para cada campo
-# Crea los widgets para cada campo
-for campo in campos:
-    label = customtkinter.CTkLabel(app, text=campo["label"], font=campo["font"])
-    label.pack(pady=10)
-    if campo["height"] > 40:
-        input_widget = customtkinter.CTkTextbox(app, width=400, height=campo["height"])
-    else:
-        text_var = tk.StringVar()  # Textvariable for input
-        input_widget = customtkinter.CTkEntry(app, width=400, height=campo["height"], textvariable=text_var)
-    input_widget.pack(pady=10)
-
-# Para obtener el texto del widget CTkTextbox
-if isinstance(input_widget, customtkinter.CTkTextbox):
-    texto = input_widget.get("1.0", "end-1c")
-# Para obtener el texto del widget CTkEntry
-elif isinstance(input_widget, customtkinter.CTkEntry):
-    texto = input_widget.get()
+        self.edit_view = ft.Row(
+            visible=False,
+            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+            controls=[
+                self.edit_name,
+                ft.IconButton(
+                    icon=ft.icons.DONE_OUTLINE_OUTLINED,
+                    icon_color=ft.colors.GREEN,
+                    tooltip="Update To-Do",
+                    on_click=self.save_clicked,
+                ),
+            ],
+        )
+        self.controls = [self.display_view, self.edit_view]
 
 
+
+class MakerMarkerDown(ft.Column):
+    # application's root control is a Column containing all other controls
+    def __init__(self):
+        super().__init__()
+        
+        self.func_title = self.create_text_field("Title of the Function", "TITLE")
+        self.func_function = self.create_text_field("Function", "FUNCTION")
+        self.func_description = self.create_text_field("Description of the Function", "DESCRIPTION")
+        self.func_return = self.create_text_field("Return Type", "RETURN")
+        
+        self.param_field = ft.TextField(hint_text="Parameter")
+        self.required_field = ft.TextField(hint_text="Required")
+        self.type_field = ft.TextField(hint_text="Type(s)")
+        self.null_field = ft.TextField(hint_text="`null` Behavior")
+        
+        self.table = ft.DataTable(
+            columns=[
+                ft.DataColumn(ft.Text("Parameter")),
+                ft.DataColumn(ft.Text("Required")),
+                ft.DataColumn(ft.Text("Type(s)")),
+                ft.DataColumn(ft.Text("`null` Behavior")),
+                ft.DataColumn(ft.Text("Default")),
+                ft.DataColumn(ft.Text("Delete")),
+            ],
+            rows=[
+                 ft.DataRow(cells=[
+                    ft.DataCell(ft.TextField(hint_text="param1", expand=True, )),
+                    ft.DataCell(ft.Checkbox(value=True, expand=True, )),
+                    ft.DataCell(ft.TextField(hint_text="true", expand=True, )),
+                    ft.DataCell(ft.TextField(hint_text="true", expand=True, )),
+                    ft.DataCell(ft.TextField(hint_text="true", expand=True, )),
+                    ft.DataCell(ft.IconButton(icon=ft.icons.DELETE_OUTLINE, icon_color="red", expand=True, )),
+                ]),
+                ],
+        )
+
+        self.width = 700
+        self.controls = [
+            ft.Row(
+                [ft.Text(value="Markdown Maker", theme_style=ft.TextThemeStyle.HEADLINE_MEDIUM, color="blue")],
+                alignment=ft.MainAxisAlignment.CENTER,
+            ),
+            ft.Row(
+                controls=[
+                    self.func_title,
+                    self.func_function
+                    # ft.FloatingActionButton(
+                    #     icon=ft.icons.ADD, on_click=self.add_clicked
+                    # ),
+                ],
+            ),
+            ft.Row(
+                controls=[
+                    self.func_description,
+                    self.func_return
+                ],
+            ),
+            self.table,
+            ft.CupertinoFilledButton(text="+", on_click=self.add_row, padding=0),
+            ft.Row(
+                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,  # Alineación para distribuir los controles
+                controls=[
+                    ft.Row(  # Columna para los checkboxes
+                        controls=[
+                            ft.Checkbox(label="SELECT", value=True),
+                            ft.Checkbox(label="WHERE", value=False),
+                        ],
+                    ),
+                    ft.TextField(label="Default SELECT/WHERE",hint_text="may be used in the query SELECT and WHERE clauses for analyzing data and applying conditional logic."),  # TextField a la derecha
+                ],
+            ),
+            ft.Container(
+                ft.TextField(label="NOTES", hint_text="- Add a note"),),
+
+        ]
+
+    def create_text_field(self, hint_text, label):
+        return ft.TextField(
+            hint_text=hint_text, 
+            # on_submit=self.add_clicked, 
+            expand=True, 
+            label=label
+    )
+    def add_clicked(self, e):
+        if self.new_task.value:
+            task = Parameter(self.new_task.value, self.task_status_change, self.task_delete)
+            self.tasks.controls.append(task)
+            self.new_task.value = ""
+            self.new_task.focus()
+            self.update()
+
+    def task_status_change(self, task):
+        self.update()
+
+    def task_delete(self, task):
+        self.tasks.controls.remove(task)
+        self.update()
+
+    def tabs_changed(self, e):
+        self.update()
+
+    def clear_clicked(self, e):
+        pass
+
+    def before_update(self):
+        pass
+    def add_row(self, e):
+        # Crear una nueva fila con los valores de los TextField
+        new_row = ft.DataRow(cells=[
+            ft.DataCell(ft.Text(self.param_field.get_text())),
+            ft.DataCell(ft.Text(self.required_field.get_text())),
+            ft.DataCell(ft.Text(self.type_field.get_text())),
+            ft.DataCell(ft.Text(self.null_field.get_text())),
+        ])
+
+        # Agregar la nueva fila al DataTable
+        self.data_table.rows.append(new_row)
+
+        # Limpiar los TextField
+        self.param_field.set_text("")
+        self.required_field.set_text("")
+        self.type_field.set_text("")
+        self.null_field.set_text("")
+
+def main(page: ft.Page):
+    page.title = "Create Markdown scritps"
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+    page.scroll = ft.ScrollMode.ADAPTIVE
+
+    # create app control and add it to the page
+    page.add(MakerMarkerDown())
+
+
+ft.app(main)
 
 
 # title = "GetUTMZoneBounds"
@@ -85,7 +238,3 @@ elif isinstance(input_widget, customtkinter.CTkEntry):
 # with open(f'{title}.md', 'w') as f:
 #     # Escribe la información en el archivo
 #     f.write(info)
-
-
-# & Run app
-app.mainloop()
