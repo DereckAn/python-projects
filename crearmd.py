@@ -5,22 +5,33 @@
 import flet as ft
 
 class Parameter(ft.Column):
-    def __init__(self, task_name, task_status_change, task_delete):
+    def __init__(self, parameter_name, 
+                 parameter_required, 
+                 parameter_delete, 
+                 parameter_default, 
+                 parameter_null,
+                 parameter_types):
         super().__init__()
-        self.completed = False
-        self.task_name = task_name
-        self.task_status_change = task_status_change
-        self.task_delete = task_delete
-        self.display_task = ft.Checkbox(
-            value=False, label=self.task_name, on_change=self.status_changed
-        )
-        self.edit_name = ft.TextField(expand=1)
+        # self.completed = False
+        
+        self.parameter_name = parameter_name
+        self.parameter_required = parameter_required
+        self.parameter_types = parameter_types
+        self.parameter_default = parameter_default
+        self.parameter_null = parameter_null
+        self.parameter_delete = parameter_delete
+        
+        # self.display_task = ft.Checkbox(
+        #     value=False, label=self.task_name, on_change=self.status_changed
+        # )
+        
+        self.edit_parameter_name = ft.TextField(expand=1)
 
         self.display_view = ft.Row(
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
-                self.display_task,
+                self.edit_parameter_name,
                 ft.Row(
                     spacing=0,
                     controls=[
@@ -66,12 +77,6 @@ class MakerMarkerDown(ft.Column):
         self.func_function = self.create_text_field("Function", "FUNCTION")
         self.func_description = self.create_text_field("Description of the Function", "DESCRIPTION")
         self.func_return = self.create_text_field("Return Type", "RETURN")
-        
-        self.param_field = ft.TextField(hint_text="Parameter")
-        self.required_field = ft.TextField(hint_text="Required")
-        self.type_field = ft.TextField(hint_text="Type(s)")
-        self.null_field = ft.TextField(hint_text="`null` Behavior")
-        
         self.table = ft.DataTable(
             columns=[
                 ft.DataColumn(ft.Text("Parameter")),
@@ -81,19 +86,31 @@ class MakerMarkerDown(ft.Column):
                 ft.DataColumn(ft.Text("Default")),
                 ft.DataColumn(ft.Text("Delete")),
             ],
-            rows=[
-                 ft.DataRow(cells=[
-                    ft.DataCell(ft.TextField(hint_text="param1", expand=True, )),
-                    ft.DataCell(ft.Checkbox(value=True, expand=True, )),
-                    ft.DataCell(ft.TextField(hint_text="true", expand=True, )),
-                    ft.DataCell(ft.TextField(hint_text="true", expand=True, )),
-                    ft.DataCell(ft.TextField(hint_text="true", expand=True, )),
-                    ft.DataCell(ft.IconButton(icon=ft.icons.DELETE_OUTLINE, icon_color="red", expand=True, )),
-                ]),
-                ],
+            rows=[],
         )
+        
+        self.param_types = ["String", "Col<String>", "Double", "Col<Double>", "Int32", "Col<Int32>"]
+        
+        self.parameter_name = ft.TextField(width=125, label="Parameter")
+        self.parameter_required = ft.Checkbox( label="Required")
+        self.parameter_types = []
+        self.parameter_null = ft.TextField(width=150, label="Null Behavior")
+        self.parameter_default = ft.TextField(width=150, label="Default")
+       
+        
+        self.checkboxes = {}
+        
+        lv = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=False)
+        for param_type in self.param_types:
+            checkbox = ft.Checkbox(param_type)
+            lv.controls.append(checkbox)
+            self.checkboxes[param_type] = checkbox
+            
+        
+         
+        
 
-        self.width = 700
+        self.width = 800
         self.controls = [
             ft.Row(
                 [ft.Text(value="Markdown Maker", theme_style=ft.TextThemeStyle.HEADLINE_MEDIUM, color="blue")],
@@ -102,20 +119,41 @@ class MakerMarkerDown(ft.Column):
             ft.Row(
                 controls=[
                     self.func_title,
-                    self.func_function
-                    # ft.FloatingActionButton(
-                    #     icon=ft.icons.ADD, on_click=self.add_clicked
-                    # ),
                 ],
             ),
             ft.Row(
-                controls=[
-                    self.func_description,
+                controls=[ 
+                    self.func_function,
                     self.func_return
                 ],
             ),
+            ft.Row( controls=[self.func_description,]),
             self.table,
-            ft.CupertinoFilledButton(text="+", on_click=self.add_row, padding=0),
+            ft.Row(
+                controls=[
+                    self.parameter_name,
+                    self.parameter_required,
+                    ft.Container(
+                        width=200,
+                        content=
+                        ft.ExpansionTile(
+                            
+                            title=ft.Text("Types"),
+                            affinity=ft.TileAffinity.LEADING,
+                            initially_expanded=False,
+                            collapsed_text_color=ft.colors.BLUE,
+                            text_color=ft.colors.BLUE,
+                            controls=[
+                                ft.ListTile(title=ft.Container(
+                                    height=100,
+                                    content=lv))
+                            ]
+                        )
+                    ),
+                    self.parameter_null,
+                    self.parameter_default,
+                ]),
+            ft.CupertinoButton(text="Add Parameter", on_click=self.add_parameter, padding=0, ),
             ft.Row(
                 alignment=ft.MainAxisAlignment.SPACE_BETWEEN,  # Alineación para distribuir los controles
                 controls=[
@@ -129,10 +167,17 @@ class MakerMarkerDown(ft.Column):
                 ],
             ),
             ft.Container(
-                ft.TextField(label="NOTES", hint_text="- Add a note"),),
+                ft.TextField(label="NOTES", hint_text="- Add a note, if any"),),
 
         ]
-
+    
+    def update_parameters_types(self):
+        self.parameter_types.clear()
+        
+        for param_type, checkbox in self.checkboxes.items():
+            if checkbox.value:
+                self.parameter_types.append(param_type)
+    
     def create_text_field(self, hint_text, label):
         return ft.TextField(
             hint_text=hint_text, 
@@ -140,13 +185,20 @@ class MakerMarkerDown(ft.Column):
             expand=True, 
             label=label
     )
-    def add_clicked(self, e):
-        if self.new_task.value:
-            task = Parameter(self.new_task.value, self.task_status_change, self.task_delete)
-            self.tasks.controls.append(task)
-            self.new_task.value = ""
-            self.new_task.focus()
-            self.update()
+    def add_parameter(self, e):
+        self.update_parameters_types()
+        print(self.parameter_name.value)
+        print(self.parameter_required.value)
+        print(self.parameter_types)
+        print(self.parameter_null.value)
+        print(self.parameter_default.value)
+        # pass
+        # if self.new_task.value:
+        #     task = Parameter(self.new_task.value, self.task_status_change, self.task_delete)
+        #     self.tasks.controls.append(task)
+        #     self.new_task.value = ""
+        #     self.new_task.focus()
+        #     self.update()
 
     def task_status_change(self, task):
         self.update()
@@ -159,10 +211,8 @@ class MakerMarkerDown(ft.Column):
         self.update()
 
     def clear_clicked(self, e):
-        pass
+        self.page.update()
 
-    def before_update(self):
-        pass
     def add_row(self, e):
         # Crear una nueva fila con los valores de los TextField
         new_row = ft.DataRow(cells=[
