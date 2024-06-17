@@ -1,21 +1,309 @@
 # created by @dereckangeles
 # 2024-06-13
-# To make the documentation faster
+# To make documentation faster
 
 import flet as ft
+
+class TSScripts():
+  def __init__(self, title, examples):
+    super().__init__()
+    
+    for exa in examples:
+            print(exa)
+        
+    typescript_code = f"""
+import type {{ ILocatedRoute, RaptorEngine, ViewDefinitions }} from "index";
+import {{ registerPublicDashboard, RSScriptor }} from "index";
+import {{ CodeEditorMonaco }} from "raptor/raptorDom/controls/CodeEditorMonaco/CodeEditorMonaco";
+import type {{ IContainerScriptor }} from "raptor/renderer/RSScriptorInterfaces";
+import {{ ensureMonacoEditorFramework }} from "util/util";
+
+import type {{ CodeExampleViewModel }} from "./controls/CodeExample/CodeExampleViewModel";
+import type {{ ICodeExample }} from "./controls/CodeExample/Interfaces";
+import {{ MultiCodeExampleViewModel }} from "./controls/CodeExample/MultiCodeExampleViewModel";
+import {{ RaptorDashboard }} from "./raptor/RaptorDashboard";
+
+export async function initModule(
+  container: HTMLElement,
+  route: ILocatedRoute
+): Promise<RaptorEngine> {{
+  const dash = await new RaptorDashboard(container, route).init();
+  await ensureMonacoEditorFramework();
+
+  const vm = getViewModel(dash);
+  dash.addView(vm.generateView());
+
+  await dash.addViewModel(vm);
+  const engine = await dash.render();
+
+  return engine;
+}}
+
+registerPublicDashboard({{
+  id: "ext/ml-docs-query/QueryExpression-{title}",
+  name: "QueryExpression-{title}",
+  description: "{title} query expression documentation",
+}});
+
+function getViewModel(dash: RaptorDashboard): InscribedCirculeViewModel {{
+  return new InscribedCirculeViewModel(dash, [
+    {{
+      name: "snippetGroup1",
+      sources: [
+        {{
+          code: `{{
+  "table": {{
+    "name": "test/allshapes"
+  }},
+  "sqlselect": ["CreateLine(XY, XY_1) as CreateLine"]
+}}`,
+          language: "json",
+          label: "JSON",
+          executionMode: "query",
+          runnable: true,
+          readOnly: false,
+          syntaxHighlightingModelUri: CodeEditorMonaco.modelUris.json.query,
+        }},
+        {{
+          code: `SELECT CreateLine(XY, XY_1) AS CreateLine
+FROM test.allshapes;`,
+          language: "sql",
+          label: "SQL",
+          executionMode: "query",
+          runnable: true,
+          readOnly: false,
+        }},
+        {{
+          code: `const q = ml.query();
+q.from("test/allshapes");
+q.select("CreateLine(XY, XY_1) as CreateLine");`,
+          language: "javascript",
+          label: "JavaScript",
+          executionMode: "javascript-query",
+          runnable: true,
+          readOnly: false,
+        }},
+      ],
+    }},
+    {{
+      name: "snippetGroup2",
+      sources: [
+        {{
+          code: `{{
+  "take": 1,
+  "table": {{
+    "name": "test/allshapes"
+  }},
+  "sqlselect": [
+    "CreateLine(Point(-80.3128682076931, 25.645892105474), Point( -80.226219445467, 25.8652550751759), False) as CreateLine"
+  ]
+}}`,
+          language: "json",
+          label: "JSON",
+          executionMode: "query",
+          runnable: true,
+          readOnly: false,
+        }},
+        {{
+          code: `SELECT CreateLine(Point(12.345453, -34.56778), Point(12.345453, -34.56778), False) AS CreateLine
+FROM test.allshapes
+LIMIT 1;`,
+          language: "sql",
+          label: "SQL",
+          executionMode: "query",
+          runnable: true,
+          readOnly: false,
+        }},
+        {{
+          code: `const q = ml.query();
+q.from("test/allshapes");
+q.select("CreateLine(Point(12.345453, -34.56778), Point(12.345453, -34.56778)) as CreateLine");
+q.take(1);`,
+          language: "javascript",
+          label: "JavaScript",
+          executionMode: "javascript-query",
+          runnable: true,
+          readOnly: false,
+        }},
+      ],
+    }},
+  ]);
+}}
+
+function markdownRow(
+  markdown: string,
+  s: IContainerScriptor<CodeExampleViewModel>
+): void {{
+  s.row().contentTemplates((s) => {{
+    s.column({{ columnLg: 10, padding: {{ topLg: 3 }} }}).contentTemplates((s) => {{
+      s.paragraph({{ text: " " }});
+      s.markdown({{
+        markdown: markdown,
+      }});
+    }});
+  }});
+}}
+
+export class InscribedCirculeViewModel extends MultiCodeExampleViewModel {{
+  constructor(dash: RaptorDashboard, sources: ICodeExample[]) {{
+    super(dash, sources);
+  }}
+
+  public onAfterRender(): void {{
+    super.onAfterRender();
+
+    // fetch markdown content
+    ml.fetch("/ext/ml-docs-query/QueryExpression-{title}.md", {{
+      method: "GET",
+      credentials: "include",
+    }})
+      .then((resp) => resp.text())
+      .then((md) => {{
+        this.markdownContent = md;
+        this.update();
+      }});
+
+    this.update();
+  }}
+
+  public generateView(): ViewDefinitions.IRenderingDefinition {{
+    const scriptor = RSScriptor.create<CodeExampleViewModel>();
+    const s = scriptor.page("page", "page");
+    s.container({{
+      fluid: true,
+      overflow: "auto",
+      //heightVH: 100,
+      customCssClasses: "ml-dash-md",
+      margin: {{
+        topLg: 4,
+      }},
+    }}).contentTemplates((s) => {{
+      s.row().contentTemplates((s) => {{
+        s.column({{ columnLg: 10 }}).contentTemplates((s) => {{
+          s.markdown({{
+            markdown: "",
+            bindings:{{
+              text: "markdownContent",
+            }},
+          }});
+        }});
+      }});
+
+      markdownRow(
+        \\`
+### Examples
+
+#### Creates a line from two points
+It takes to point columns from table \\`test/allshapes\\` and returns a LineString.
+\\`,
+        s
+      );
+
+      s.row().contentTemplates((s) => {{
+        s.column({{
+          columnLg: 10,
+          border: {{ color: "secondary", width: 1, rounded: true }},
+        }}).contentTemplates((s) => {{
+          this._codeExampleViewModels["snippetGroup1"].scriptView(
+            s,
+            "codeExampleViewModels.snippetGroup1"
+          );
+        }});
+      }});
+
+      markdownRow(
+        \\`
+
+#### Creates a line from two static points with a boolean flag
+We pass two point functions to make our values static and we pass the Boolean "False" to indicate that we do not want to split the line at the date line.
+\\`,
+        s
+      );
+
+      s.row().contentTemplates((s) => {{
+        s.column({{
+          columnLg: 10,
+          border: {{ color: "secondary", width: 1, rounded: true }},
+        }}).contentTemplates((s) => {{
+          this._codeExampleViewModels["snippetGroup2"].scriptView(
+            s,
+            "codeExampleViewModels.snippetGroup2"
+          );
+        }});
+      }});
+    }});
+
+    const viewDef = scriptor.commitPage();
+    return viewDef;
+  }}
+}} 
+    """
+
+
+    with open(f'QueryExpression-{title}.ts', 'w') as f:
+        f.write(typescript_code)
+    
+class MDScripts():
+  def __init__(self, title, function, description, retorno, select, where, custom_usage, versions, parameters, notes):
+    super().__init__()
+    rows = '\n'.join([f"| `{p[0]}`| {'**Required**' if p[1] == "Required" else 'Optional'} | {', '.join(f'`{x.strip()}`' for x in p[2].value.split(','))}| {p[3]} | {p[4]} | {p[5]} |" for p in parameters])
+    versions_text = f"## Versions\n{versions}" if len(versions) > 0 else ""
+    notes_text = f"### Notes\n- {notes}" if len(notes) > 0 else ""
+    
+    usage_text = f"`{title}` may be used in the query"
+    usage_text += " SELECT" if select else ""
+    usage_text += " and WHERE" if where else ""
+    usage_text += custom_usage if custom_usage else " clauses for analyzing data and applying conditional logic."
+    
+
+    info = f"""# {title}
+
+## Description
+`{function}`
+
+{description}
+
+{versions_text}
+
+### Return Type
+`{retorno}` (see [Type Conversions](/docs/QueryExpression-Type))
+
+## Parameters
+| Parameter | Required | Type(s) | Description | `null` Behavior | Default |
+| :-------- | :------- | :------ | :---------- | :-------------- | :------ |
+{rows}
+
+## Usage
+{usage_text}
+
+{notes_text}
+
+"""
+
+    with open(f'QueryExpression-{title}.md', 'w') as f:
+        f.write(info)
 
 class Example(ft.Column):
     def __init__(self, example_delete):
         super().__init__()
         self.example_delete = example_delete
-        self.example = ft.TextField(label="Example", multiline=True, expand=1)
-        self.display_example = ft.Row(controls=[
+        self.example_title = ft.TextField(label="Example Title", multiline=True,  width=420)
+        self.example_subtitle = ft.TextField(label="Example Subtitle", multiline=True,  width=420) 
+        self.example = ft.TextField(label="Example", multiline=True, width=800,)
+        self.div = ft.Divider(height=10, color="grey")
+        self.display_example = ft.Row(
+            wrap=True,
+            controls=[
+            self.example_title,
+            self.example_subtitle,
             self.example, 
             ft.IconButton(
                 ft.icons.DELETE_OUTLINE, 
                 tooltip="Delete Example", 
                 on_click=self.delete_example,
                 icon_color="red",),
+            self.div,
+            
         ])  
 
         self.controls = [self.display_example]
@@ -83,7 +371,7 @@ class Version(ft.Column):
 class Parameter(ft.Column):
     def __init__(self, parameter_name, 
                  parameter_required, 
-                 parameter_types,
+                 types_selected,
                  parameter_description,
                  parameter_null,
                  parameter_default, 
@@ -94,109 +382,42 @@ class Parameter(ft.Column):
         self.display_parameter_required = ft.Text("Required" if parameter_required else "Optional")
         self.display_parameter_default = ft.Text(parameter_default if parameter_default else "N/A")
         self.display_parameter_null = ft.Text(parameter_null if parameter_null else "Returns `null`")
-        self.display_parameter_types = ft.Text(", ".join(parameter_types))
+        self.display_types_selected = ft.Text(", ".join(types_selected))
         self.display_parameter_description = ft.Text(parameter_description)
         self.parameter_delete = parameter_delete
         
-        # self.display_task = ft.Checkbox(
-        #     value=False, label=self.task_name, on_change=self.status_changed
-        # )
-        
-        # self.edit_parameter_name = ft.TextField(expand=1)
-        # self.edit_parameter_required = ft.Checkbox()
-        # self.edit_parameter_default = ft.TextField(expand=1)
-        # self.edit_parameter_null = ft.TextField(expand=1)
-        # self.edit_parameter_types = ft.Container(
-        #                 width=200,
-        #                 # content=
-        #                 # ft.ExpansionTile(
-                            
-        #                 #     title=ft.Text("Types"),
-        #                 #     affinity=ft.TileAffinity.LEADING,
-        #                 #     initially_expanded=False,
-        #                 #     collapsed_text_color=ft.colors.BLUE,
-        #                 #     text_color=ft.colors.BLUE,
-        #                 #     controls=[
-        #                 #         ft.ListTile(title=ft.Container(
-        #                 #             height=100,
-        #                 #             content=lv))
-        #                 #     ]
-        #                 # )
-        #             ),
-        
-
         self.display_view = ft.Row(
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-            vertical_alignment=ft.CrossAxisAlignment.CENTER,
             controls=[
                 self.display_parameter_name,
                 self.display_parameter_required,
-                self.display_parameter_types,
+                self.display_types_selected,
                 self.display_parameter_description,
                 self.display_parameter_default,
                 self.display_parameter_null,
-                ft.Row(
-                    spacing=0,
-                    controls=[
-                        ft.IconButton(
-                            icon=ft.icons.CREATE_OUTLINED,
-                            tooltip="Edit To-Do",
-                            # on_click=self.edit_param,
-                        ),
-                        ft.IconButton(
+                ft.IconButton(
                             ft.icons.DELETE_OUTLINE,
                             tooltip="Delete To-Do",
                             on_click=self.delete_param,
+                            icon_color="red",
                         ),
-                    ],
-                ),
-                
             ],
         )
 
-        # self.edit_view = ft.Row(
-        #     visible=False,
-        #     alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-        #     vertical_alignment=ft.CrossAxisAlignment.CENTER,
-        #     controls=[
-        #         self.edit_parameter_name,
-        #         self.edit_parameter_required,
-        #         self.edit_parameter_types,
-        #         self.edit_parameter_default,
-        #         self.edit_parameter_null,
-        #         ft.IconButton(
-        #             icon=ft.icons.DONE_OUTLINE_OUTLINED,
-        #             icon_color=ft.colors.GREEN,
-        #             tooltip="Update To-Do",
-        #             on_click=self.save_edited_param,
-        #         ),
-        #     ],
-        # )
-        
         self.controls = [self.display_view, ]
         
     def delete_param(self, e):
         self.parameter_delete(self)
     
-    # def edit_param(self, e):
-    #     self.edit_parameter_name.value = self.display_parameter_name.value
-    #     self.edit_parameter_required.value = self.display_parameter_required.value
-    #     self.edit_parameter_default.value = self.display_parameter_default.value
-    #     self.edit_parameter_null.value = self.display_parameter_null.value
-    #     self.edit_parameter_types.value = self.display_parameter_types
-    #     self.display_view.visible = False
-    #     self.edit_view.visible = True
+    # def save_edited_param(self, e):
+    #     self.display_parameter_name.value = self.edit_parameter_name.value
+    #     self.display_parameter_required.value = self.edit_parameter_required.value
+    #     self.display_parameter_default.value = self.edit_parameter_default.value
+    #     self.display_parameter_null.value = self.edit_parameter_null.value
+    #     self.display_parameter_types = self.edit_parameter_types.value
+    #     self.display_view.visible = True
+    #     self.edit_view.visible = False
     #     self.update()
-        
-    def save_edited_param(self, e):
-        self.display_parameter_name.value = self.edit_parameter_name.value
-        self.display_parameter_required.value = self.edit_parameter_required.value
-        self.display_parameter_default.value = self.edit_parameter_default.value
-        self.display_parameter_null.value = self.edit_parameter_null.value
-        self.display_parameter_types = self.edit_parameter_types.value
-        self.display_view.visible = True
-        self.edit_view.visible = False
-        self.update()
 
 class MakerMarkerDown(ft.Column):
     # application's root control is a Column containing all other controls
@@ -205,8 +426,20 @@ class MakerMarkerDown(ft.Column):
         
         self.vnum = 1
         self.nnotes = 0
-        self.width = 1000
-        self.param_types = ["String", "Col<String>", "Double", "Col<Double>", "Int32", "Col<Int32>"]
+        self.width = 900
+        self.types_selected = []
+        self.param_types = ["String", "Column<String>", 
+                            "Double", "Column<Double>", 
+                            "Int32", "Columnumn<Int32>", 
+                            "Int64", "Column<Int64>", 
+                            "Boolean", 'Column<String>("true" or "false")', 
+                            "DateTime",	"Column<DateTime>",
+                            "Guid",	"Column<Guid>",
+                            "TimeSpan",
+                            "Point", "Column<XY>",
+                            "Line",	"Column<Line>",
+                            "Multipoint", "Column<Multipoint>",
+                            "Shape", "Column<Poly>"]
         
         self.func_title = self.create_text_field("Title of the Function", "TITLE")
         self.func_function = self.create_text_field("Function", "FUNCTION")
@@ -215,13 +448,13 @@ class MakerMarkerDown(ft.Column):
         
         self.table = ft.DataTable(
             columns=[
-                ft.DataColumn(ft.Text("Parameter")),
-                ft.DataColumn(ft.Text("Required")),
-                ft.DataColumn(ft.Text("Type(s)")),
-                ft.DataColumn(ft.Text("Description")),
-                ft.DataColumn(ft.Text("`null` Behavior")),
-                ft.DataColumn(ft.Text("Default")),
-                ft.DataColumn(ft.Text("Edit")),
+                ft.DataColumn(ft.Text("Parameter", color="grey")),
+                ft.DataColumn(ft.Text("Required", color="grey")),
+                ft.DataColumn(ft.Text("Type(s)", color="grey")),
+                ft.DataColumn(ft.Text("Description", color="grey")),
+                ft.DataColumn(ft.Text("`null` Behavior", color="grey")),
+                ft.DataColumn(ft.Text("Default", color="grey")),
+                ft.DataColumn(ft.Text("Edit", color="grey")),
             ],
             rows=[],
         )
@@ -245,19 +478,37 @@ class MakerMarkerDown(ft.Column):
                             ]
                         ))
         
+        self.parameter_types = []
         self.parameter_name = ft.TextField(width=125, label="Parameter")
         self.parameter_required = ft.Checkbox( label="")
-        self.parameter_types = []
         self.parameter_description = ft.TextField(label="Description")
-        self.parameter_null = ft.TextField(width=150, label="Null Behavior")
-        self.parameter_default = ft.TextField(width=150, label="Default")
-        self.checkboxes = {}
+        self.parameter_null = ft.TextField(width=80, label="Null Behavior")
+        self.parameter_default = ft.TextField(width=80, label="Default")
+        self.parameter_dialog_styles = ft.ElevatedButton("Styles", on_click=self.open_dlg_modal)
+        self.dlg_modal = ft.AlertDialog(
+            title=ft.Text("Parameter Styles"),
+            content=ft.Container(
+                content=ft.Row(
+                    wrap=True,
+                    controls=self.parameter_types,
+                  )
+                ),
+            on_dismiss=lambda e: print("Modal dialog dismissed!", self.types_selected),
+        )
+      
         
-        lv = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=False)
         for param_type in self.param_types:
-            checkbox = ft.Checkbox(param_type)
-            lv.controls.append(checkbox)
-            self.checkboxes[param_type] = checkbox
+            self.parameter_types.append(
+                ft.Chip(
+                    label=ft.Text(param_type),  
+                    bgcolor=ft.colors.GREY_700,
+                    selected_color=ft.colors.GREEN_700,
+                    disabled_color=ft.colors.GREEN_100,
+                    autofocus=True,
+                    on_select=lambda e, param_type=param_type: 
+                        self.types_selected.remove(param_type) if param_type in self.types_selected else self.types_selected.append(param_type),
+                    )
+                )
         
         self.controls = [
             self.titlee("Markdown Maker", "Red"),
@@ -266,10 +517,9 @@ class MakerMarkerDown(ft.Column):
                     self.func_title,
                 ],
             ),
-            ft.Divider(height=1, color="gray"),
             self.version1,
             self.versions,
-            ft.FilledTonalButton("Version", icon="ad    d", on_click=self.add_version),
+            ft.FilledTonalButton("Version", icon="add", on_click=self.add_version),
             self.titlee("Parameters", "blue"),
             self.table,
             ft.Divider(height=1, color="gray"),
@@ -278,29 +528,13 @@ class MakerMarkerDown(ft.Column):
                 controls=[
                     self.parameter_name,
                     self.parameter_required,
-                    ft.Container(
-                        width=200,
-                        content=
-                        ft.ExpansionTile(
-                            
-                            title=ft.Text("Types"),
-                            affinity=ft.TileAffinity.LEADING,
-                            initially_expanded=False,
-                            collapsed_text_color=ft.colors.BLUE,
-                            text_color=ft.colors.BLUE,
-                            controls=[
-                                ft.ListTile(title=ft.Container(
-                                    height=100,
-                                    content=lv))
-                            ]
-                        )
-                    ),
+                    self.parameter_dialog_styles,
                     self.parameter_description,
                     self.parameter_null,
                     self.parameter_default,
                 ]),
             ft.FilledTonalButton("Parameter", icon="add", on_click=self.add_parameter),
-            self.titlee("Query Builder", "blue"),
+            self.titlee("SELECT/WHERE", "blue"),
             ft.Row(
                 alignment=ft.MainAxisAlignment.SPACE_BETWEEN,  # Alineación para distribuir los controles
                 controls=[
@@ -338,13 +572,6 @@ class MakerMarkerDown(ft.Column):
                     ]
             )
     
-    def update_parameters_types(self):
-        self.parameter_types.clear()
-        
-        for param_type, checkbox in self.checkboxes.items():
-            if checkbox.value:
-                self.parameter_types.append(param_type)
-    
     def create_text_field(self, hint_text, label):
         return ft.TextField(
             hint_text=hint_text, 
@@ -354,11 +581,10 @@ class MakerMarkerDown(ft.Column):
     )
     
     def add_parameter(self, e):
-        self.update_parameters_types()
-        if self.parameter_name.value and self.parameter_types:
+        if self.parameter_name.value and self.types_selected and self.parameter_description.value:
             param = Parameter(self.parameter_name.value, 
                               self.parameter_required.value, 
-                              self.parameter_types, 
+                              self.types_selected, 
                               self.parameter_description.value,
                               self.parameter_null.value, 
                               self.parameter_default.value, 
@@ -368,12 +594,33 @@ class MakerMarkerDown(ft.Column):
             self.parameter_required.value = False
             self.parameter_null.value = ""
             self.parameter_default.value = ""   
-            self.parameter_types = []
+            self.types_selected.clear()
             self.parameter_description.value = ""
+            self.parameter_types.clear()
+            self.put_stypes_modal()
             self.update()
         else:
             self.alerts("Parameter Name and Type(s) are required")
             
+    def open_dlg_modal(self,e):
+        self.page.dialog = self.dlg_modal  
+        self.dlg_modal.open = True
+        self.page.update()
+        
+    def put_stypes_modal(self):
+      for param_type in self.param_types:
+            self.parameter_types.append(
+                ft.Chip(
+                    label=ft.Text(param_type),  
+                    bgcolor=ft.colors.GREY_700,
+                    selected_color=ft.colors.GREEN_700,
+                    disabled_color=ft.colors.GREEN_100,
+                    autofocus=True,
+                    on_select=lambda e, param_type=param_type: 
+                        self.types_selected.remove(param_type) if param_type in self.types_selected else self.types_selected.append(param_type),
+                    )
+                )
+  
     def alerts(self, text, color="red"):
         self.page.snack_bar = ft.SnackBar(
             ft.Text(text),
@@ -418,104 +665,63 @@ class MakerMarkerDown(ft.Column):
         self.update()
     
     def create_scripts(self, e):
-        example_list = []
-        notes_list = []
-        version_list = []
-        parameters_list = []
+      example_list = []
+      notes_list = []
+      version_list = []
+      parameters_list = []
+      
+      for exa in self.examples.controls:
+          example_list.append([exa.example.value, exa.example_title.value, exa.example_subtitle.value])
+      
+      for note in self.notes.controls:
+          notes_list.append(note.note.value)
+      
+      for ver in self.versions.controls:
+          version_list.append([
+              ver.display_version_name.value, 
+              ver.display_version_return.value, 
+              ver.display_version_description.value])
+      
+      for param in self.parameters.controls:
+          parameters_list.append([
+              param.display_parameter_name.value, 
+              param.display_parameter_required.value, 
+              param.display_types_selected,
+              param.display_parameter_description.value,
+              param.display_parameter_null.value, 
+              param.display_parameter_default.value])
+      
+      if not self.func_title.value or not self.func_function.value or not self.func_description.value or not self.func_return.value or not parameters_list:
+        self.alerts("Please complete all the fields", "Red")
+        return
+      
+      print("title: ", self.func_title.value)
+      print("function: ", self.func_function.value)
+      print("description: ", self.func_description.value)
+      print("return: ", self.func_return.value)
+      print("parameters_list: ", parameters_list)
+      print("example_list: ", example_list)
+      print("notes_list: ", notes_list)
+      print("version_list: ", version_list)
+      
+      MDScripts(self.func_title.value,
+                self.func_function.value,
+                self.func_description.value,
+                self.func_return.value,
+                self.select.value,
+                self.where.value,
+                self.custom_usage.value,
+                version_list,
+                parameters_list,
+                notes_list
+                )
+      
+      TSScripts(self.func_title.value, example_list)
+      
+      self.alerts("Creating Scripts", "green")
         
-        for exa in self.examples.controls:
-            example_list.append(exa.example.value)
-        
-        for note in self.notes.controls:
-            notes_list.append(note.note.value)
-        
-        for ver in self.versions.controls:
-            version_list.append([
-                ver.display_version_name.value, 
-                ver.display_version_return.value, 
-                ver.display_version_description.value])
-        
-        for param in self.parameters.controls:
-            parameters_list.append([
-                param.display_parameter_name.value, 
-                param.display_parameter_required.value, 
-                param.display_parameter_types, 
-                param.display_parameter_null.value, 
-                param.display_parameter_default.value])
-        
-        print("title: ", self.func_title.value)
-        print("function: ", self.func_function.value)
-        print("description: ", self.func_description.value)
-        print("return: ", self.func_return.value)
-        print("parameters_list: ", parameters_list)
-        print("example_list: ", example_list)
-        print("notes_list: ", notes_list)
-        print("version_list: ", version_list)
-        
-        self.md_scripts(self.func_title.value,
-                           self.func_function.value,
-                           self.func_description.value,
-                           self.func_return.value,
-                           self.select.value,
-                           self.where.value,
-                           self.custom_usage.value,
-                           version_list,
-                           parameters_list,
-                           notes_list
-                           )
-        
-        self.ts_scripts(self.func_title.value,
-                           example_list
-                           )
-        
-        self.alerts("Creating Scripts", "green")
-        
-    def md_scripts(self, title, function, description, retorno, select, where, custom_usage, versions, parameters, notes):
-        
-        rows = '\n'.join([f"| `{p[0]}`| {'**Required**' if p[1] == "Required" else 'Optional'} | {', '.join(f'`{x.strip()}`' for x in p[2].value.split(','))} | {p[3]} | {p[4]} |" for p in parameters])
-        versions_text = f"## Versions\n{versions}" if len(versions) > 0 else ""
-        notes_text = f"### Notes\n- {notes}" if len(notes) > 0 else ""
-        
-        usage_text = f"`{title}` may be used in the query"
-        usage_text += " SELECT" if select else ""
-        usage_text += " and WHERE" if where else ""
-        usage_text += custom_usage if custom_usage else " clauses for analyzing data and applying conditional logic."
-        
-
-        info = f"""# {title}
-
-## Description
-`{function}`
-
-{description}
-
-{versions_text}
-
-### Return Type
-`{retorno}` (see [Type Conversions](/docs/QueryExpression-Type))
-
-## Parameters
-| Parameter | Required | Type(s) | Description | `null` Behavior | Default |
-| :-------- | :------- | :------ | :---------- | :-------------- | :------ |
-{rows}
-
-## Usage
-{usage_text}
-
-{notes_text}
-
-"""
-
-        # Abre el archivo en modo de escritura. Si el archivo no existe, se creará.
-        with open(f'QueryExpression-{title}.md', 'w') as f:
-            # Escribe la información en el archivo
-            f.write(info)
-
-            # Cierra el archivo
-        
-    def ts_scripts(self, title, examples):
-        pass
     
+
 def main(page: ft.Page):
     page.title = "Create Scritps"
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
