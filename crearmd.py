@@ -3,15 +3,105 @@
 # To make documentation faster
 
 import flet as ft
+import json
+import subprocess
 from tabulate import tabulate
 
 class TSScripts():
   def __init__(self, title, examples):
     super().__init__()
+    examples_text = ""
+    markdown_rows = ""
     
-    for exa in examples:
-            print(exa)
+    
+    def json2jsquery(json):
+      js = """const q = ml.query();
+"""
+      js += f'q.from("{json['table']['name']}");\n'
+      if 'sqlselect' in json:
+        selections = ', '.join([f'"{sel}"' for sel in json['sqlselect']])
+        js += f'q.select({selections});'
+      if 'take' in json:
+        js += f'q.take({json["take"]});\n'
+      if 'withgeo' in json:
+        js += 'q.withgeo(true);\n'
+      return js
+    
+    def json2sql(json):
+      table_name = json['table']['name'].replace('/', '.')
+      if 'sqlselect' in json:
+        selections = ',\n '.join([f'"{sel}"' for sel in json['sqlselect']])
         
+      sql = f"""SELECT {selections}
+"""
+      sql += f'FROM {table_name}'
+      if 'take' in json:
+        sql += f'LIMIT {json["take"]}'
+      if 'withgeo' in json:
+        sql += 'WITH GEO'
+      return sql
+    
+    for i, exa in enumerate(examples):
+      example_json = json.loads(exa[0])
+      print(i, example_json)
+      sql_example = json2sql(example_json)
+      js_example = json2jsquery(example_json)
+      
+      examples_text += f"""{{
+      name: "snippetGroup{i+1}",
+      sources: [
+        {{
+          code: `{example_json}`,
+          language: "json",
+          label: "JSON",
+          executionMode: "query",
+          runnable: true,
+          readOnly: false,
+          syntaxHighlightingModelUri: CodeEditorMonaco.modelUris.json.query,
+        }},
+        {{
+          code: `{sql_example}`,
+          language: "sql",
+          label: "SQL",
+          executionMode: "query",
+          runnable: true,
+          readOnly: false,
+        }},
+        {{
+          code: `{js_example}`,
+          language: "javascript",
+          label: "JavaScript",
+          executionMode: "javascript-query",
+          runnable: true,
+          readOnly: false,
+        }},
+      ],
+    }},
+    """
+
+      markdown_rows += f"""markdownRow(`
+### Examples
+
+#### {exa[1]}
+{exa[2]}
+`,
+        s
+      );
+
+      s.row().contentTemplates((s) => {{
+        s.column({{
+          columnLg: 10,
+          border: {{ color: "secondary", width: 1, rounded: true }},
+        }}).contentTemplates((s) => {{
+          this._codeExampleViewModels["snippetGroup1"].scriptView(
+            s,
+            "codeExampleViewModels.snippetGroup1"
+          );
+        }});
+      }});
+      """
+      
+      
     typescript_code = f"""
 import type {{ ILocatedRoute, RaptorEngine, ViewDefinitions }} from "index";
 import {{ registerPublicDashboard, RSScriptor }} from "index";
@@ -48,86 +138,7 @@ registerPublicDashboard({{
 
 function getViewModel(dash: RaptorDashboard): InscribedCirculeViewModel {{
   return new InscribedCirculeViewModel(dash, [
-    {{
-      name: "snippetGroup1",
-      sources: [
-        {{
-          code: `{{
-  "table": {{
-    "name": "test/allshapes"
-  }},
-  "sqlselect": ["CreateLine(XY, XY_1) as CreateLine"]
-}}`,
-          language: "json",
-          label: "JSON",
-          executionMode: "query",
-          runnable: true,
-          readOnly: false,
-          syntaxHighlightingModelUri: CodeEditorMonaco.modelUris.json.query,
-        }},
-        {{
-          code: `SELECT CreateLine(XY, XY_1) AS CreateLine
-FROM test.allshapes;`,
-          language: "sql",
-          label: "SQL",
-          executionMode: "query",
-          runnable: true,
-          readOnly: false,
-        }},
-        {{
-          code: `const q = ml.query();
-q.from("test/allshapes");
-q.select("CreateLine(XY, XY_1) as CreateLine");`,
-          language: "javascript",
-          label: "JavaScript",
-          executionMode: "javascript-query",
-          runnable: true,
-          readOnly: false,
-        }},
-      ],
-    }},
-    {{
-      name: "snippetGroup2",
-      sources: [
-        {{
-          code: `{{
-  "take": 1,
-  "table": {{
-    "name": "test/allshapes"
-  }},
-  "sqlselect": [
-    "CreateLine(Point(-80.3128682076931, 25.645892105474), Point( -80.226219445467, 25.8652550751759), False) as CreateLine"
-  ]
-}}`,
-          language: "json",
-          label: "JSON",
-          executionMode: "query",
-          runnable: true,
-          readOnly: false,
-        }},
-        {{
-          code: `SELECT CreateLine(Point(12.345453, -34.56778), Point(12.345453, -34.56778), False) AS CreateLine
-FROM test.allshapes
-LIMIT 1;`,
-          language: "sql",
-          label: "SQL",
-          executionMode: "query",
-          runnable: true,
-          readOnly: false,
-        }},
-        {{
-          code: `const q = ml.query();
-q.from("test/allshapes");
-q.select("CreateLine(Point(12.345453, -34.56778), Point(12.345453, -34.56778)) as CreateLine");
-q.take(1);`,
-          language: "javascript",
-          label: "JavaScript",
-          executionMode: "javascript-query",
-          runnable: true,
-          readOnly: false,
-        }},
-      ],
-    }},
+    {examples_text}
   ]);
 }}
 
@@ -190,48 +201,8 @@ export class InscribedCirculeViewModel extends MultiCodeExampleViewModel {{
         }});
       }});
 
-      markdownRow(
-        \\`
-### Examples
-
-#### Creates a line from two points
-It takes to point columns from table \\`test/allshapes\\` and returns a LineString.
-\\`,
-        s
-      );
-
-      s.row().contentTemplates((s) => {{
-        s.column({{
-          columnLg: 10,
-          border: {{ color: "secondary", width: 1, rounded: true }},
-        }}).contentTemplates((s) => {{
-          this._codeExampleViewModels["snippetGroup1"].scriptView(
-            s,
-            "codeExampleViewModels.snippetGroup1"
-          );
-        }});
-      }});
-
-      markdownRow(
-        \\`
-
-#### Creates a line from two static points with a boolean flag
-We pass two point functions to make our values static and we pass the Boolean "False" to indicate that we do not want to split the line at the date line.
-\\`,
-        s
-      );
-
-      s.row().contentTemplates((s) => {{
-        s.column({{
-          columnLg: 10,
-          border: {{ color: "secondary", width: 1, rounded: true }},
-        }}).contentTemplates((s) => {{
-          this._codeExampleViewModels["snippetGroup2"].scriptView(
-            s,
-            "codeExampleViewModels.snippetGroup2"
-          );
-        }});
-      }});
+      {markdown_rows}
+      
     }});
 
     const viewDef = scriptor.commitPage();
@@ -252,7 +223,8 @@ class MDScripts():
     table = tabulate(parameters_list, headers=["Parameter", "Required", "Type(s)", "Description", "`null` Behavior", "Default"], tablefmt="pipe", stralign="center")
 
     versions_text = f"## Versions\n{versions}" if len(versions) > 0 else ""
-    notes_text = f"### Notes\n- {notes}" if len(notes) > 0 else ""
+    notes_text = "\n".join([f"- {note}" for note in notes]) if len(notes) > 0 else ""
+    notes_text = f"### Notes\n{notes_text}" if len(notes) > 0 else ""
     
     usage_text = f"`{title}` may be used in the query"
     usage_text += " SELECT" if select else ""
@@ -266,11 +238,14 @@ class MDScripts():
 `{function}`
 
 {description}
+"""
 
-{versions_text}
-
+    if len(versions) > 0:
+        info += f"""{versions_text}"""
+        
+    info += f"""
 ### Return Type
-`{retorno}` (see Type Conversions)
+`{retorno}` (see [Type Conversions](/docs/QueryExpression-Type))
 
 ## Parameters
 {table}
@@ -706,17 +681,17 @@ class MakerMarkerDown(ft.Column):
       print("notes_list: ", notes_list)
       print("version_list: ", version_list)
       
-      MDScripts(self.func_title.value,
-                self.func_function.value,
-                self.func_description.value,
-                self.func_return.value,
-                self.select.value,
-                self.where.value,
-                self.custom_usage.value,
-                version_list,
-                parameters_list,
-                notes_list
-                )
+      # MDScripts(self.func_title.value,
+      #           self.func_function.value,
+      #           self.func_description.value,
+      #           self.func_return.value,
+      #           self.select.value,
+      #           self.where.value,
+      #           self.custom_usage.value,
+      #           version_list,
+      #           parameters_list,
+      #           notes_list
+      #           )
       
       TSScripts(self.func_title.value, example_list)
       
