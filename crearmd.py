@@ -3,6 +3,7 @@
 # To make documentation faster
 
 import flet as ft
+from tabulate import tabulate
 
 class TSScripts():
   def __init__(self, title, examples):
@@ -246,7 +247,10 @@ We pass two point functions to make our values static and we pass the Boolean "F
 class MDScripts():
   def __init__(self, title, function, description, retorno, select, where, custom_usage, versions, parameters, notes):
     super().__init__()
-    rows = '\n'.join([f"| `{p[0]}`| {'**Required**' if p[1] == "Required" else 'Optional'} | {', '.join(f'`{x.strip()}`' for x in p[2].value.split(','))}| {p[3]} | {p[4]} | {p[5]} |" for p in parameters])
+    parameters_list = [[f"`{p[0]}`", f'**{p[1]}**' if p[1] == "Required" else 'Optional', f"{', '.join(f'`{x.strip()}`' for x in p[2].value.split(','))}", p[3], p[4], p[5]] for p in parameters]
+    
+    table = tabulate(parameters_list, headers=["Parameter", "Required", "Type(s)", "Description", "`null` Behavior", "Default"], tablefmt="pipe", stralign="center")
+
     versions_text = f"## Versions\n{versions}" if len(versions) > 0 else ""
     notes_text = f"### Notes\n- {notes}" if len(notes) > 0 else ""
     
@@ -266,12 +270,10 @@ class MDScripts():
 {versions_text}
 
 ### Return Type
-`{retorno}` (see [Type Conversions](/docs/QueryExpression-Type))
+`{retorno}` (see Type Conversions)
 
 ## Parameters
-| Parameter | Required | Type(s) | Description | `null` Behavior | Default |
-| :-------- | :------- | :------ | :---------- | :-------------- | :------ |
-{rows}
+{table}
 
 ## Usage
 {usage_text}
