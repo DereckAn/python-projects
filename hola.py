@@ -80,16 +80,13 @@ class TodoApp(ft.Column):
             hint_text="What needs to be done?", on_submit=self.add_clicked, expand=False
         )
         self.tasks = ft.Column()
-
         self.filter = ft.Tabs(
             scrollable=False,
             selected_index=0,
             on_change=self.tabs_changed,
             tabs=[ft.Tab(text="all"), ft.Tab(text="active"), ft.Tab(text="completed")],
         )
-
         self.items_left = ft.Text("0 items left")
-
         self.width = 600
         self.controls = [
             ft.Row(
@@ -147,7 +144,7 @@ class TodoApp(ft.Column):
                 self.task_delete(task)
 
     def before_update(self):
-        status = self.filter.tabs[self.filter.selected_index].text
+        status = self.filter.tabs[self.filter.selected_index].text 
         count = 0
         for task in self.tasks.controls:
             task.visible = (
