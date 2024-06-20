@@ -4,7 +4,6 @@
 
 import flet as ft
 import json
-import subprocess
 from tabulate import tabulate
 
 class TSScripts():
@@ -16,8 +15,8 @@ class TSScripts():
     
     def json2jsquery(json):
       js = """const q = ml.query();
-"""
-      js += f'q.from("{json['table']['name']}");\n'
+    """
+      js += f'q.from("{json["table"]["name"]}");\n'
       if 'sqlselect' in json:
         selections = ', '.join([f'"{sel}"' for sel in json['sqlselect']])
         js += f'q.select({selections});'
@@ -26,6 +25,7 @@ class TSScripts():
       if 'withgeo' in json:
         js += 'q.withgeo(true);\n'
       return js
+
     
     def json2sql(json):
       table_name = json['table']['name'].replace('/', '.')
@@ -668,7 +668,7 @@ class MakerMarkerDown(ft.Column):
               param.display_parameter_null.value, 
               param.display_parameter_default.value])
       
-      if not self.func_title.value or not self.func_function.value or not self.func_description.value or not self.func_return.value or not parameters_list:
+      if not self.func_title.value or not self.func_function.value or not self.func_description.value or not self.func_return.value or not parameters_list or not example_list:
         self.alerts("Please complete all the fields", "Red")
         return
       
@@ -681,17 +681,17 @@ class MakerMarkerDown(ft.Column):
       print("notes_list: ", notes_list)
       print("version_list: ", version_list)
       
-      # MDScripts(self.func_title.value,
-      #           self.func_function.value,
-      #           self.func_description.value,
-      #           self.func_return.value,
-      #           self.select.value,
-      #           self.where.value,
-      #           self.custom_usage.value,
-      #           version_list,
-      #           parameters_list,
-      #           notes_list
-      #           )
+      MDScripts(self.func_title.value,
+                self.func_function.value,
+                self.func_description.value,
+                self.func_return.value,
+                self.select.value,
+                self.where.value,
+                self.custom_usage.value,
+                version_list,
+                parameters_list,
+                notes_list
+                )
       
       TSScripts(self.func_title.value, example_list)
       
