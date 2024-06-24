@@ -220,7 +220,7 @@ class MDScripts():
     super().__init__()
     parameters_list = [[f"`{p[0]}`", f'**{p[1]}**' if p[1] == "Required" else 'Optional', f"{', '.join(f'`{x.strip()}`' for x in p[2].value.split(','))}", p[3], p[4], p[5]] for p in parameters]
     
-    table = tabulate(parameters_list, headers=["Parameter", "Required", "Type(s)", "Description", "`null` Behavior", "Default"], tablefmt="pipe", stralign="center")
+    table = tabulate(parameters_list, headers=["Parameter", "Required", "Type(s)", "Description", "`null` Behavior", "Default"], tablefmt="pipe", stralign="left")
 
     versions_text = f"## Versions\n{versions}" if len(versions) > 0 else ""
     notes_text = "\n".join([f"- {note}" for note in notes]) if len(notes) > 0 else ""
@@ -245,17 +245,16 @@ class MDScripts():
         
     info += f"""
 ### Return Type
-`{retorno}` (see [Type Conversions](/docs/QueryExpression-Type))
+`{retorno}` (see [Type Conversions](/docs/QueryExpression-Types))
 
 ## Parameters
 {table}
 
 ## Usage
 {usage_text}
-
-{notes_text}
-
 """
+    if notes_text:
+      info += f"{notes_text}\n"
 
     with open(f'QueryExpression-{title}.md', 'w') as f:
         f.write(info)
