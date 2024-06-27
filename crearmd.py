@@ -79,9 +79,8 @@ class TSScripts():
     }},
     """
 
-      markdown_rows += f"""markdownRow(`
-### Examples
-
+      markdown_rows += f"""markdownRow(
+        `### Examples
 #### {exa[1]}
 {exa[2]}
 `,
@@ -93,9 +92,9 @@ class TSScripts():
           columnLg: 10,
           border: {{ color: "secondary", width: 1, rounded: true }},
         }}).contentTemplates((s) => {{
-          this._codeExampleViewModels["snippetGroup1"].scriptView(
+          this._codeExampleViewModels["snippetGroup{i+1}"].scriptView(
             s,
-            "codeExampleViewModels.snippetGroup1"
+            "codeExampleViewModels.snippetGroup{i+1}"
           );
         }});
       }});
