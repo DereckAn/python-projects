@@ -214,50 +214,6 @@ export class InscribedCirculeViewModel extends MultiCodeExampleViewModel {{
     with open(f'QueryExpression-{title}.ts', 'w') as f:
         f.write(typescript_code)
     
-# class MDScripts():
-#   def __init__(self, title, function, description, retorno, select, where, custom_usage, versions, parameters, notes):
-#     super().__init__()
-#     parameters_list = [[f"`{p[0]}`", f'**{p[1]}**' if p[1] == "Required" else 'Optional', f"{', '.join(f'`{x.strip()}`' for x in p[2].value.split(','))}", p[3], p[4], p[5]] for p in parameters]
-    
-#     table = tabulate(parameters_list, headers=["Parameter", "Required", "Type(s)", "Description", "`null` Behavior", "Default"], tablefmt="pipe", stralign="left")
-
-#     versions_text = f"## Versions\n{versions}" if len(versions) > 0 else ""
-#     notes_text = "\n".join([f"- {note}" for note in notes]) if len(notes) > 0 else ""
-#     notes_text = f"### Notes\n{notes_text}" if len(notes) > 0 else ""
-    
-#     usage_text = f"`{title}` may be used in the query"
-#     usage_text += " SELECT" if select else ""
-#     usage_text += " and WHERE" if where else ""
-#     usage_text += custom_usage if custom_usage else " clauses for analyzing data and applying conditional logic."
-    
-
-#     info = f"""# {title}
-
-# ## Description
-# `{function}`
-
-# {description}
-# """
-
-#     if len(versions) > 0:
-#         info += f"""{versions_text}"""
-        
-#     info += f"""
-# ### Return Type
-# `{retorno}` (see [Type Conversions](/docs/QueryExpression-Types))
-
-# ## Parameters
-# {table}
-
-# ## Usage
-# {usage_text}
-# """
-#     if notes_text:
-#       info += f"{notes_text}\n"
-
-#     with open(f'QueryExpression-{title}.md', 'w') as f:
-#         f.write(info)
-
 class Example(ft.Column):
     def __init__(self, example_delete):
         super().__init__()
@@ -678,18 +634,6 @@ class MakerMarkerDown(ft.Column):
       print("example_list: ", example_list)
       print("notes_list: ", notes_list)
       print("version_list: ", version_list)
-      
-    #   MDScripts(self.func_title.value,
-    #             self.func_function.value,
-    #             self.func_description.value,
-    #             self.func_return.value,
-    #             self.select.value,
-    #             self.where.value,
-    #             self.custom_usage.value,
-    #             version_list,
-    #             parameters_list,
-    #             notes_list
-    #             )
       
       TSScripts(self.func_title.value, example_list)
       
