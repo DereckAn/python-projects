@@ -3372,7 +3372,7 @@ public partial class ExpressionScope {
 
 	[AggregateFunction]
 	[MethodDesc("Geo", "Returns a shape set <i>subject</i> minus shape sets <i>clip</i>.")]
-	public Nullable<ShapeSetDouble> DifferenceClipper(IList<int> multiRow, [CacheIndex] int cacheIndex, Nullable<ShapeSetDouble> subject, ExpressionScopeDelegate<ShapeSetDouble> clip) {
+	public Nullable<ShapeSetDouble>     DifferenceClipper(IList<int> multiRow, [CacheIndex] int cacheIndex, Nullable<ShapeSetDouble> subject, ExpressionScopeDelegate<ShapeSetDouble> clip) {
 		if (!subject.Assigned)
 			return default;
 			
