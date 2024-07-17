@@ -4,75 +4,101 @@
 
 - Identify your MapLarge user account and password.
 - Learn how to download and set up the MapLarge software.
-- Familiarizarse con las funciones básicas del entorno de trabajo.
+- Become familiar with the basic functions of the work environment.
 - Complete a sample project to demonstrate proficiency in using MapLarge.
 
 ## 1. Identify your MapLarge user account and password.
 
-- First of all, Download and Install `Google Chrome` on your computer.
- 
-<img src="Screenshot 2024-07-16 at 2.40.08 PM.png" alt="alt text" width="200"/>
+- First of all, download and install `Google Chrome` on your computer.
 
-- Then, install `Duo Mobile` on your cellphone. 
+  <img src="images/chrome.png" alt="alt text" width="30"/>
 
-<img src="IMG_6091.jpg" alt="alt text" width="200"/>
+- Then, install `Duo Mobile` on your cellphone.
 
-- En un documento que te debieron mandar por correo electronico. Podras encontrar tu email and temporary password.
+  <img src="images/duo.jpg" alt="alt text" width="30"/>
 
-     <img src="Screenshot 2024-07-16 at 1.52.55 PM.png" alt="alt text" width="300"/>
+- In a document that should have been sent to you by email, you will be able to find your email and temporary password.
 
-- Deberia verse algo asi:
+- It should look something like this:
   - `dereck.angeles@maplarge.com`
   - `vaTynP=L3Soxwfpp`
-- Cambia tu contraseña por una que te sea facil de recordar y dificil de adivinar.
+- Change your password to one that is easy for you to remember and hard to guess.
 
-  - [Click here to change your password.](https://self-service-password-reset.maplarge.net/)
+- [Click here to change your password.](https://self-service-password-reset.maplarge.net/)
 
-     <img src="Screenshot 2024-07-16 at 2.34.15 PM.png" alt="alt text" width="300"/>
-
-
+  <img src="images/changepass.png" alt="alt text" width="300"/>
 
 ## 2. Login to MapLarge
 
-- 
+- Enter Google Chrome and login with your account.
 
+- Enroll in Duo Mobile. [Click Here](https://maplarge.login.duosecurity.com)
 
-## Downloading and Installing MapLarge
+- Login to Amazon Web Services. [Click Here](https://maplarge-personnel.awsapps.com/start)
 
-1. Go to the MapLarge website and click on the "Download" button.
-2. Select the appropriate version for your operating system (Windows or macOS).
-3. Follow the prompts to install the software.
-4. Launch the application once the installation is complete.
+- Download Openvpn. [Click Here](https://ravpn.maplarge.com/)
 
-## Setting Up Your Account
+  - Choose `SAML` option.
+  - Choose your OS.
 
-1. Open the MapLarge application and click on "Login" in the top right corner.
-2. Enter your username and password provided by your administrator.
-3. Click on "Login" to access your account.
+- After downloading and activating OpenVPN, turn on your VPN.
 
-## Navigating the MapLarge Interface
+<img src="images/onvpn.png" alt="alt text" width="300"/>
 
-1. Familiarize yourself with the main components of the MapLarge interface:
-   - Toolbar: Access various tools and features.
-   - Map View: Visualize your data on a map.
-   - Data Panel: View and edit your data.
-   - Layer List: Manage your data layers.
-2. Explore the different menus and options to get comfortable with the layout.
+## 3. Install Dotnet
 
-## Working with Data in MapLarge
+- Install Dotnet [SDK 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 
-1. Learn how to import data into MapLarge (e.g., CSV, Shapefile).
-2. Understand how to create and manage data layers.
-3. Practice styling and visualizing your data on the map.
+## 4. Download MapLarge SDK
 
-## Sample Project
+- Download MapLarge SDK. [Click Here](https://nuget.maplarge.net/packages/maplarge.cli)
+  - OpenVPN must be running.
 
-1. Download the sample data provided (e.g., a CSV file with location data).
-2. Follow the instructions to import the data into MapLarge.
-3. Complete the tasks outlined in the sample project to demonstrate your understanding of the MapLarge platform.
+## 5. Setting Up Your Local ADK Project
 
-## Additional Resources
+#### Prerequisites
 
-- MapLarge User Manual (PDF)
-- MapLarge Tutorial Videos (YouTube)
-- MapLarge Support Forum (website)
+1. **Trust ASP.NET dev certs**: Run the following command:
+    ```bash
+    dotnet dev-certs https --trust
+    ```
+
+#### Installation
+
+1. **Install the MapLarge CLI**: Run the following command:
+    ```bash
+    dotnet tool install --global MapLarge.CLI --add-source [path to nuget package folder] --version 1.0.41
+    ```
+    - (Maybe you need to add the nuget package folder to the nugets path.)
+
+#### Project Setup
+
+1. **Create a folder for your MapLarge work** on your computer.
+2. **Open a PowerShell or Terminal window** and run:
+    ```bash
+    maplarge adk create-project -name mldocs
+    ```
+3. **Change directory** into the new `mldocs` folder.
+
+#### Repository Cloning
+
+1. Inside this folder, you should see a couple of folders: `.adk` and `extensions`.
+2. **Clone the MLDocs-Extension repo**: Run the git command. Don't forget to include the "extensions" folder name at the end, so that it clones the repo inside that folder.
+    ```bash
+    git clone [clone URL from the Azure DevOps] extensions
+    ```
+
+#### Project Initialization
+
+1. **Open VS Code** at the root of the ADK project folder (where the `tsconfig.json` file is). On Windows, you can just type `code .`.
+2. Inside VS Code, open a Terminal and **initialize your project** by running:
+    ```bash
+    maplarge adk init -remoteServer https://contractor-screen.maplarge.net -profile cs
+    ```
+
+#### Running the Project
+
+1. Now that you've initialized your project, you can **run it**:
+    ```bash
+    maplarge adk run
+    ```
