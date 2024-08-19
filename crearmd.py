@@ -15,7 +15,7 @@ class TSScripts():
     
     def json2jsquery(json):
       js = """const q = ml.query();
-    """
+"""
       js += f'q.from("{json["table"]["name"]}");\n'
       if 'sqlselect' in json:
         selections = ', '.join([f'"{sel}"' for sel in json['sqlselect']])
@@ -405,7 +405,7 @@ class MakerMarkerDown(ft.Column):
         self.types_selected = []
         self.param_types = ["String", "Column<String>", 
                             "Double", "Column<Double>", 
-                            "Int32", "Columnumn<Int32>", 
+                            "Int32", "Column<Int32>", 
                             "Int64", "Column<Int64>", 
                             "Boolean", 'Column<String>("true" or "false")', 
                             "DateTime",	"Column<DateTime>",

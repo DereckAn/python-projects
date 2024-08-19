@@ -47,13 +47,17 @@ download.pack(pady=10) # note: si no ponemos el .pack no se mostrara en la panta
 def download_video(url):
     try:
         yt = YouTube(url, on_progress_callback=progress_function)
-        video = yt.streams.get_highest_resolution()
-        video.download()
-        title.configure(text=f'{yt.title}', text_color='green')
-        finishLabel.configure(text='', text_color='white') # note: esto es para volver a restableces los colores del label. No se si sea tan necesario
-        print('Download completed')
-        finishLabel.configure(text=f'You have downloaded {yt.title}', text_color='green')
-        
+        # Selecciona el stream con la mejor calidad que incluya video y audio.
+        video = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
+        if video:
+            video.download()
+            title.configure(text=f'{yt.title}', text_color='green')
+            finishLabel.configure(text='', text_color='white')
+            print('Download completed')
+            finishLabel.configure(text=f'You have downloaded {yt.title}', text_color='green')
+        else:
+            print('No suitable stream found')
+            finishLabel.configure(text='No suitable stream found', text_color='red')
     except Exception as e:
         print('Download failed')
         print(e)
