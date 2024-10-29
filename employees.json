@@ -1,0 +1,79 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "name": "Ana García",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+      "isWorking": true,
+      "weeklyHours": {
+        "2024-10-22": 0,
+        "2024-10-23": 3,
+        "2024-10-24": 1,
+        "2024-10-25": 1,
+        "2024-10-26": 1,
+        "2024-10-27": 2,
+        "2024-10-28": 5
+      }
+    },
+    {
+      "id": "2",
+      "name": "Carlos Ruiz",
+      "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
+      "isWorking": false,
+      "weeklyHours": {
+        "2024-10-22": 4,
+        "2024-10-23": 6,
+        "2024-10-24": 3,
+        "2024-10-25": 2,
+        "2024-10-26": 5,
+        "2024-10-27": 0,
+        "2024-10-28": 0
+      }
+    },
+    {
+      "id": "3",
+      "name": "María López",
+      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
+      "isWorking": true,
+      "weeklyHours": {
+        "2024-10-22": 2,
+        "2024-10-23": 2,
+        "2024-10-24": 4,
+        "2024-10-25": 4,
+        "2024-10-26": 3,
+        "2024-10-27": 1,
+        "2024-10-28": 2
+      }
+    },
+    {
+      "id": "4",
+      "name": "Pedro Sánchez",
+      "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+      "isWorking": true,
+      "weeklyHours": {
+        "2024-10-22": 3,
+        "2024-10-23": 3,
+        "2024-10-24": 3,
+        "2024-10-25": 3,
+        "2024-10-26": 3,
+        "2024-10-27": 0,
+        "2024-10-28": 0
+      }
+    },
+    {
+      "id": "5",
+      "name": "Laura Martínez",
+      "imageUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb",
+      "isWorking": false,
+      "weeklyHours": {
+        "2024-10-22": 5,
+        "2024-10-23": 4,
+        "2024-10-24": 4,
+        "2024-10-25": 4,
+        "2024-10-26": 3,
+        "2024-10-27": 0,
+        "2024-10-28": 0
+      }
+    }
+  ]
+}
