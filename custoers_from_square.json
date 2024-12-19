@@ -1,0 +1,1629 @@
+[
+  {
+    "id": "GMY4R1N4BJC0YQRXY8ZVXBBY7C",
+    "created_at": "2024-09-15T05:48:31.917Z",
+    "updated_at": "2024-09-15T05:48:31Z",
+    "given_name": "Aaron",
+    "family_name": "Cabiness",
+    "nickname": "Aaron Cabiness",
+    "email_address": "aaroncabiness15@gmail.com",
+    "phone_number": "3855299113",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "LOYALTY",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "Y999ZHAM9H0214EC4NVNHMDPB0",
+    "created_at": "2024-09-22T17:15:28.36Z",
+    "updated_at": "2024-09-22T17:15:43Z",
+    "given_name": "Adam",
+    "family_name": "Nixdorf",
+    "phone_number": "+13023828048",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "RH2DFAAMWGYD89EK1TTM4SEM00",
+    "created_at": "2024-09-13T23:16:52.084Z",
+    "updated_at": "2024-10-18T17:12:05Z",
+    "given_name": "AJ",
+    "family_name": "Nielsen",
+    "email_address": "ajknielsen99@gmail.com",
+    "phone_number": "14807170755",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "MLMY4PXA10S5H.LOYAL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 2
+  },
+  {
+    "id": "7MSV27ENM495JV7368EE2FPYHG",
+    "created_at": "2024-09-18T01:39:30.764Z",
+    "updated_at": "2024-09-18T01:39:31Z",
+    "given_name": "Alejandro",
+    "family_name": "Aguilar",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "YCWX8VTY6A12G5J0SVNX87JPTM",
+    "created_at": "2024-06-22T18:13:31.083Z",
+    "updated_at": "2024-06-22T18:13:32Z",
+    "given_name": "Alejandro",
+    "family_name": "Araos",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM"
+    ],
+    "version": 1
+  },
+  {
+    "id": "DC2E2QP6X9VA1R75G4Q49GPRWR",
+    "created_at": "2024-09-06T14:55:40.822Z",
+    "updated_at": "2024-09-06T14:55:41Z",
+    "given_name": "Amanda",
+    "family_name": "Taft",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "NYE943CDH2N1QXEFHYN2W2ZPTC",
+    "created_at": "2024-11-04T20:10:56.623Z",
+    "updated_at": "2024-11-04T20:10:57Z",
+    "given_name": "Amar",
+    "family_name": "Paul",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "05ZT5JAKSV87WNC49B9V9VZJBR",
+    "created_at": "2024-10-05T20:08:32.936Z",
+    "updated_at": "2024-10-22T23:13:54Z",
+    "given_name": "Andy",
+    "family_name": "Perezsanchez",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["MLMY4PXA10S5H.LOYAL", "gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "3X5APX6CM155K2G1QXA18NTQTG",
+    "created_at": "2024-09-05T01:16:17.501Z",
+    "updated_at": "2024-09-19T02:05:48Z",
+    "given_name": "Anna",
+    "family_name": "Allen",
+    "email_address": "annacamilleallen@gmail.com",
+    "phone_number": "8183149369",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "MLMY4PXA10S5H.LOYAL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "5JJ8HXVQ4M8FSETYCS7B9B1RB0",
+    "created_at": "2024-10-09T16:21:41.421Z",
+    "updated_at": "2024-10-09T16:21:51Z",
+    "given_name": "Anna",
+    "family_name": "Stott",
+    "phone_number": "18013609844",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 2
+  },
+  {
+    "id": "DFZK7BEFAC8917Q8ZWDPPM4RTR",
+    "created_at": "2024-09-24T18:17:00.167Z",
+    "updated_at": "2024-09-24T18:17:00Z",
+    "given_name": "Areli",
+    "nickname": "Areli",
+    "email_address": "arelimoreyravega@gmail.com",
+    "phone_number": "+18015292482",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "LOYALTY",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "DHJN5YB6JBHVGV6SJP8XC88RNW",
+    "created_at": "2024-09-22T17:12:56.896Z",
+    "updated_at": "2024-09-22T17:12:57Z",
+    "given_name": "Ashlie",
+    "family_name": "Thornton",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "QZ5DQ5WD4VVQYT7TZ2B6XAV9J0",
+    "created_at": "2024-09-29T00:16:24.964Z",
+    "updated_at": "2024-09-29T00:16:24Z",
+    "given_name": "Benjamin",
+    "family_name": "Romney",
+    "nickname": "Benjamin Romney",
+    "email_address": "bjromney@gmail.com",
+    "phone_number": "8016643913",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "LOYALTY",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "V6ATMFCQKM7V771HXTX7NENGHC",
+    "created_at": "2024-07-06T17:27:06.336Z",
+    "updated_at": "2024-07-06T17:27:07Z",
+    "given_name": "Bradford",
+    "family_name": "Shepherd",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "RBNHZ0VN77C94X2NAEMP7JY31M",
+    "created_at": "2024-08-09T18:28:37.877Z",
+    "updated_at": "2024-08-09T18:28:38Z",
+    "given_name": "Brandy",
+    "family_name": "Jesperson",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "PFPF1AW41W18WWCHDXCN5G5G9R",
+    "created_at": "2024-09-16T15:51:42.578Z",
+    "updated_at": "2024-09-16T15:51:43Z",
+    "given_name": "Brooklyn",
+    "family_name": "Pintar",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "4ZVBBJ2W3VXP6YJVNZGPAC4Q0G",
+    "created_at": "2024-10-23T03:47:54.709Z",
+    "updated_at": "2024-10-23T03:47:55Z",
+    "given_name": "Caleb",
+    "family_name": "Briggs",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "6NQDKFHSDCHDJ643APK2X4YD88",
+    "created_at": "2024-10-20T18:41:35.644Z",
+    "updated_at": "2024-10-20T18:41:36Z",
+    "given_name": "Calvin",
+    "family_name": "Huish",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "6J9VQQH77E03ZEXCSZVYEDHE7W",
+    "created_at": "2024-10-25T19:02:17.909Z",
+    "updated_at": "2024-10-25T19:02:35Z",
+    "given_name": "Cameron",
+    "family_name": "Crowther",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "YWNXXHBSQA39VP8Y6DE48QZQQ8",
+    "created_at": "2024-09-24T03:03:12.488Z",
+    "updated_at": "2024-09-24T03:03:45Z",
+    "given_name": "Cayden",
+    "family_name": "Slade",
+    "email_address": "caydenlslade@gmail.com",
+    "phone_number": "+14803236878",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "LOYALTY",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "9DEKW4S4SXMHW1385X6100CSEG",
+    "created_at": "2024-08-16T18:54:09.361Z",
+    "updated_at": "2024-09-05T19:28:45Z",
+    "given_name": "Clayton",
+    "family_name": "Dunnivan",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.CHURN_RISK",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM"
+    ],
+    "version": 1
+  },
+  {
+    "id": "1KW1NQ5P9B29ACF8DDZJE4HA4C",
+    "created_at": "2024-09-15T19:45:33.035Z",
+    "updated_at": "2024-09-15T19:45:33Z",
+    "given_name": "Conner",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "4PHMJYE23H92DWBZT2BV4HJZ8C",
+    "created_at": "2024-09-14T23:17:13.724Z",
+    "updated_at": "2024-09-14T23:17:14Z",
+    "given_name": "Craig",
+    "family_name": "Johnson",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "Q66KV20X1FAF7EEC8GWQ7Z9S54",
+    "created_at": "2024-10-03T23:19:12.438Z",
+    "updated_at": "2024-10-03T23:19:12Z",
+    "given_name": "Cullen",
+    "family_name": "Fales",
+    "nickname": "Cullen Fales",
+    "email_address": "goldensun707@gmail.com",
+    "phone_number": "16617534123",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "LOYALTY",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "SK7X7ZDE0P03VQHS72977W1BTG",
+    "created_at": "2024-10-08T16:16:50.144Z",
+    "updated_at": "2024-10-08T16:16:51Z",
+    "given_name": "Damon",
+    "family_name": "Fausett",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "ME63A1W7GNT9G9C1EKDEYEHJXC",
+    "created_at": "2024-09-28T19:16:18.917Z",
+    "updated_at": "2024-09-28T19:16:20Z",
+    "given_name": "David",
+    "family_name": "Barney",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "PXYEQXJJ96PDTV3A28H6PCAN8G",
+    "created_at": "2024-10-15T15:34:08.583Z",
+    "updated_at": "2024-10-15T15:34:09Z",
+    "given_name": "Debra",
+    "family_name": "Nish",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "362HWTXX2H4597RJKK4356NSWG",
+    "created_at": "2024-10-31T17:25:11.523Z",
+    "updated_at": "2024-10-31T17:27:16Z",
+    "given_name": "Dereck",
+    "family_name": "Angeles",
+    "email_address": "dereckangeles15071998@gmail.com",
+    "phone_number": "8014723664",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4"
+    ],
+    "version": 0
+  },
+  {
+    "id": "H2M0A6A4QF8TGGHZPBD49FA374",
+    "created_at": "2024-10-17T01:22:12.865Z",
+    "updated_at": "2024-10-17T01:22:13Z",
+    "given_name": "Deyvin",
+    "family_name": "Perezsanchez",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.LOYAL",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "YCSQJ3SGJ7Z4060J1JVX41RJMR",
+    "created_at": "2024-08-23T15:21:23.486Z",
+    "updated_at": "2024-08-23T15:21:24Z",
+    "given_name": "Dianne",
+    "family_name": "Singleton",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "1GXF1QSN5S1F3ABCB73285WNCM",
+    "created_at": "2024-09-07T23:31:18.737Z",
+    "updated_at": "2024-09-07T23:34:45Z",
+    "given_name": "Diego",
+    "family_name": "Garcia",
+    "email_address": "diegitto10@hotmail.com",
+    "address": {
+      "address_line_1": "279 sunrise dr",
+      "locality": "Alpine",
+      "administrative_district_level_1": "Utah",
+      "postal_code": "84004",
+      "country": "US"
+    },
+    "phone_number": "+15196547555",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "birthday": "2024-10-09",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4"
+    ],
+    "version": 0
+  },
+  {
+    "id": "P06154YQE4T3A3Q49HQTNKSN9M",
+    "created_at": "2024-09-28T23:11:01.962Z",
+    "updated_at": "2024-09-28T23:11:02Z",
+    "given_name": "Elizabeth",
+    "family_name": "Harrison",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "JJ0S6JMVD7B33WEQBC2YYRNCH0",
+    "created_at": "2024-10-30T16:42:40.718Z",
+    "updated_at": "2024-10-30T16:42:42Z",
+    "given_name": "Emma",
+    "family_name": "Starling",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "VZ4HT403VERRF0CATAX82FJ96W",
+    "created_at": "2024-09-25T23:22:29.826Z",
+    "updated_at": "2024-09-25T23:22:31Z",
+    "given_name": "Emmie",
+    "family_name": "Woodward",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "G13BZVEE1FD831MRKNH2YH3V48",
+    "created_at": "2024-09-11T14:54:28.655Z",
+    "updated_at": "2024-09-11T14:54:29Z",
+    "given_name": "Enzo",
+    "family_name": "Robledo",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "REGPQF0DJXKYHAG9RXH7S25NK4",
+    "created_at": "2024-09-04T18:51:32.97Z",
+    "updated_at": "2024-09-04T18:51:34Z",
+    "given_name": "Eric",
+    "family_name": "Holliday",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "TBTSQPSPPCS5QQ88DSKW499340",
+    "created_at": "2024-10-25T14:30:23.933Z",
+    "updated_at": "2024-10-25T14:30:24Z",
+    "given_name": "Faye",
+    "family_name": "Goodsell",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "AVZJ7X0N2N8AQ3SQQKC8STRA5R",
+    "created_at": "2024-10-17T01:37:24.603Z",
+    "updated_at": "2024-10-17T01:37:25Z",
+    "given_name": "G",
+    "family_name": "Toloza",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "9C4XMSEZ4X6CDM3XE0YMB5BN54",
+    "created_at": "2024-09-05T00:23:29.511Z",
+    "updated_at": "2024-09-05T23:25:31Z",
+    "given_name": "Gabriel",
+    "family_name": "Johnson",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.CHURN_RISK",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM"
+    ],
+    "version": 1
+  },
+  {
+    "id": "PK219Y0A2FYES8N6EC4W255FN0",
+    "created_at": "2024-10-08T17:11:36.485Z",
+    "updated_at": "2024-10-08T17:12:11Z",
+    "given_name": "Gabriella",
+    "family_name": "Vespe",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 2
+  },
+  {
+    "id": "8G84PAG5VZ0G1F4N6454F9HK94",
+    "created_at": "2024-06-29T17:51:36.636Z",
+    "updated_at": "2024-06-29T17:51:37Z",
+    "given_name": "H",
+    "family_name": "Walker-thaxton",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "QB5Y4GN4T16WV3SB3NEK6A2Q4G",
+    "created_at": "2024-09-27T19:21:47.044Z",
+    "updated_at": "2024-10-12T00:23:53Z",
+    "given_name": "Hank",
+    "family_name": "Cox",
+    "email_address": "hankcox1@gmail.com",
+    "phone_number": "+19512131700",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "7D2K5ANEQ5K6EYX23SPKD0E584",
+    "created_at": "2024-09-03T19:25:34.581Z",
+    "updated_at": "2024-09-03T19:25:57Z",
+    "given_name": "Hannah",
+    "family_name": "Hager",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "J6TGVHNS6GEK0Y7VEMER22NCQ8",
+    "created_at": "2024-08-24T19:01:38.695Z",
+    "updated_at": "2024-09-29T23:49:07Z",
+    "given_name": "Heather",
+    "family_name": "Shumway",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 2
+  },
+  {
+    "id": "JASX8MV5TN3GZEA6ERSNJD5008",
+    "created_at": "2024-07-06T18:35:59.739Z",
+    "updated_at": "2024-07-06T18:36:12Z",
+    "given_name": "Jaime",
+    "family_name": "Dansie",
+    "phone_number": "8013602688",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "DVH72RZNM26EGADTYS73GTPCA0",
+    "created_at": "2024-06-29T18:49:15.744Z",
+    "updated_at": "2024-06-29T18:49:16Z",
+    "given_name": "Josiah",
+    "family_name": "Sarabia",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.CHURN_RISK",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM"
+    ],
+    "version": 1
+  },
+  {
+    "id": "FFNVCWCEEA4K42Z4D2NPT54J0G",
+    "created_at": "2024-06-08T18:30:11.328Z",
+    "updated_at": "2024-10-19T17:21:46Z",
+    "given_name": "Julia",
+    "family_name": "Nelson",
+    "phone_number": "12062653794",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "MLMY4PXA10S5H.LOYAL",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 2
+  },
+  {
+    "id": "SZCWECQ1EF6KJNT6VBA2K0D6W8",
+    "created_at": "2024-08-23T15:30:02.325Z",
+    "updated_at": "2024-08-23T15:30:04Z",
+    "given_name": "Kelsey",
+    "family_name": "Straw",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "HPF08A8RFXYFA3NM71A4FXQF9C",
+    "created_at": "2024-10-09T16:18:53.956Z",
+    "updated_at": "2024-10-09T16:18:54Z",
+    "given_name": "Kiley",
+    "family_name": "Capell",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "63PTGW7J8Q3X3TTBJTWRG88HS4",
+    "created_at": "2024-05-14T00:39:09.207Z",
+    "updated_at": "2024-05-14T00:39:10Z",
+    "given_name": "Larinda",
+    "family_name": "Nilsen",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM"
+    ],
+    "version": 1
+  },
+  {
+    "id": "4BSHQTR9BGZBMFQ9B5Q3P7GQGR",
+    "created_at": "2024-09-15T00:46:54.934Z",
+    "updated_at": "2024-09-15T00:46:55Z",
+    "given_name": "Laura",
+    "family_name": "Archibald",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "H5M5KNFW9Z2Q1SCJXPQPX6161W",
+    "created_at": "2024-10-04T00:48:36.334Z",
+    "updated_at": "2024-10-04T00:48:37Z",
+    "given_name": "Lewis",
+    "family_name": "Urling",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "A5W0MSER1MXQKBS7503MEJCYTR",
+    "created_at": "2024-10-29T17:31:34.673Z",
+    "updated_at": "2024-10-29T17:31:35Z",
+    "given_name": "Lindsay",
+    "family_name": "Robbins",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "9MTP10SZQ9CKCS730Q97EC65E8",
+    "created_at": "2024-09-28T20:47:35.684Z",
+    "updated_at": "2024-09-28T20:47:35Z",
+    "given_name": "Lizzy",
+    "family_name": "Jenkins",
+    "nickname": "Lizzy Jenkins",
+    "email_address": "lizzy.jnkins@gmail.com",
+    "phone_number": "15082729633",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "LOYALTY",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "FTTBR9HRHRTCCQAQZ5E933THWM",
+    "created_at": "2024-09-14T19:00:35.636Z",
+    "updated_at": "2024-09-14T19:00:35Z",
+    "given_name": "Lizzy",
+    "family_name": "Ungerman",
+    "nickname": "Lizzy Ungerman",
+    "email_address": "lizzy.ungerman@gmail.com",
+    "phone_number": "8012340993",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "LOYALTY",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "02G0EQ5P6BW4G9YY97TGXGKXY0",
+    "created_at": "2024-09-08T00:03:03.452Z",
+    "updated_at": "2024-09-08T00:03:04Z",
+    "given_name": "Loriol",
+    "family_name": "Anderson",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "30J0NGAY0SYQTMQXNZ6P0WK4YR",
+    "created_at": "2024-09-11T15:12:58.234Z",
+    "updated_at": "2024-09-11T15:12:58Z",
+    "given_name": "Luc",
+    "family_name": "Schmidt",
+    "nickname": "Luc Schmidt",
+    "email_address": "schmidt.lucb@gmail.com",
+    "phone_number": "8013623336",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "LOYALTY",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "ZTBNCZS4XXKMFW7YRQQNKN5M04",
+    "created_at": "2024-09-28T14:04:59.291Z",
+    "updated_at": "2024-09-28T14:05:08Z",
+    "given_name": "Lytiana",
+    "family_name": "Akinaka",
+    "phone_number": "18086331858",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 2
+  },
+  {
+    "id": "FZN5FP0VEMGBW3MKN0MVCJ969C",
+    "created_at": "2024-08-29T04:20:52.548Z",
+    "updated_at": "2024-08-29T04:20:53Z",
+    "given_name": "Mackenzie",
+    "family_name": "Tuck",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "6PKE6R83RRZYVGK1WFWDEEXQ4W",
+    "created_at": "2024-09-28T15:14:00.71Z",
+    "updated_at": "2024-09-28T15:14:01Z",
+    "given_name": "Mallory",
+    "family_name": "Barber",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "SX7MPYQZQNWT3R6B19KS582QZW",
+    "created_at": "2024-08-28T19:47:45.31Z",
+    "updated_at": "2024-08-28T19:47:45Z",
+    "given_name": "Maria",
+    "family_name": "Spinks",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "FS696XER2EK5Y4VG48DQS0PHWC",
+    "created_at": "2024-06-22T20:06:16.795Z",
+    "updated_at": "2024-09-25T00:18:07Z",
+    "given_name": "Melissa",
+    "family_name": "Quinn",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM"
+    ],
+    "version": 2
+  },
+  {
+    "id": "1ZT301VNB715MPTHZX86XSB5AC",
+    "created_at": "2024-10-09T00:15:12.558Z",
+    "updated_at": "2024-10-09T00:15:13Z",
+    "given_name": "Melissa",
+    "family_name": "Rask",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "DD907C3F492JNA8VN32FG0Z1ZM",
+    "created_at": "2024-06-08T05:54:09.486Z",
+    "updated_at": "2024-11-01T01:31:39Z",
+    "given_name": "Michelle",
+    "family_name": "Villalva",
+    "email_address": "michellevvmr@gmail.com",
+    "phone_number": "8017559296",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "MLMY4PXA10S5H.LOYAL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "8WABPEATFG9WQ23K73YCK1SQE4",
+    "created_at": "2024-09-07T23:17:32.576Z",
+    "updated_at": "2024-09-07T23:17:33Z",
+    "given_name": "Nathan",
+    "family_name": "Hurt",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM"
+    ],
+    "version": 1
+  },
+  {
+    "id": "QP8F89F32SRWME5DJJQ130XF9G",
+    "created_at": "2024-10-19T19:25:19.151Z",
+    "updated_at": "2024-10-19T19:25:21Z",
+    "given_name": "Nicole",
+    "family_name": "Lewis",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "5N9ZYEP0FZCWXJPAFZR3ZETND4",
+    "created_at": "2024-09-03T17:55:35.076Z",
+    "updated_at": "2024-09-03T17:55:35Z",
+    "given_name": "Olivia",
+    "family_name": "Muralt",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "W5P2NYN2JH1PQ1JF7H3VC6ZYDR",
+    "created_at": "2024-09-27T17:52:16.084Z",
+    "updated_at": "2024-10-08T18:37:26Z",
+    "given_name": "Olivia",
+    "family_name": "Novick",
+    "email_address": "livnovick@gmail.com",
+    "phone_number": "+15618430216",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "MLMY4PXA10S5H.LOYAL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "F5HBY5FHRKB8AGP2JDKFXZVK54",
+    "created_at": "2024-10-09T01:42:52.039Z",
+    "updated_at": "2024-10-09T01:43:13Z",
+    "given_name": "Parker",
+    "family_name": "Ross",
+    "phone_number": "16307300522",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 2
+  },
+  {
+    "id": "NMTSX10116Z8501SWT61SSH434",
+    "created_at": "2024-09-11T18:15:31.808Z",
+    "updated_at": "2024-09-11T18:15:31Z",
+    "given_name": "Phil",
+    "family_name": "Stewart",
+    "email_address": "phildstew@gmail.com",
+    "phone_number": "+18016940477",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "DIRECTORY",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4"
+    ],
+    "version": 0
+  },
+  {
+    "id": "T0H5QD01X5A5MB883T0CFFY1J0",
+    "created_at": "2024-09-11T18:14:51.405Z",
+    "updated_at": "2024-09-11T18:14:52Z",
+    "given_name": "Phillip",
+    "family_name": "Stewart",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "2ZG1AJHEFCV6B5EYQBJAG39P9C",
+    "created_at": "2024-09-30T17:26:39.662Z",
+    "updated_at": "2024-09-30T17:26:39Z",
+    "given_name": "Protein",
+    "family_name": "House",
+    "email_address": "hello.proteinhouse@gmail.com",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "EGIFTING",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYAL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4"
+    ],
+    "version": 0
+  },
+  {
+    "id": "9CQT10KDKC58C1NSN416NP3J9R",
+    "created_at": "2024-10-04T17:21:11.393Z",
+    "updated_at": "2024-10-04T17:21:12Z",
+    "given_name": "Raine",
+    "family_name": "Hamblin",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM"
+    ],
+    "version": 1
+  },
+  {
+    "id": "YWXSP1YN0M52FKC93Z2S6E0WDW",
+    "created_at": "2024-09-24T15:51:37.34Z",
+    "updated_at": "2024-09-24T15:51:37Z",
+    "given_name": "Ramiro",
+    "family_name": "Ruiz",
+    "nickname": "Ramiro Ruiz",
+    "email_address": "ramiro24ruiz@gmail.com",
+    "phone_number": "8018671740",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "LOYALTY",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "DHF0A5EHJ3HM3EC1GAYRWNZG00",
+    "created_at": "2024-06-22T19:21:43.42Z",
+    "updated_at": "2024-06-22T19:21:45Z",
+    "given_name": "Ramon",
+    "family_name": "Gallegos",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "6705GMXGZYWYS46N9A4BE0QSFR",
+    "created_at": "2024-08-16T18:00:20.416Z",
+    "updated_at": "2024-08-16T18:00:21Z",
+    "given_name": "Richard",
+    "family_name": "Carroll",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["MLMY4PXA10S5H.LOYAL", "gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "6R8Z6C2SPP8W5MJ1C5PWTX02Y4",
+    "created_at": "2024-06-08T16:27:06.365Z",
+    "updated_at": "2024-06-08T16:27:07Z",
+    "given_name": "Rinn",
+    "family_name": "Brazier",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "S6WXAMPAXW8S83H19CV4338NH0",
+    "created_at": "2024-11-01T18:26:44.785Z",
+    "updated_at": "2024-11-01T18:26:45Z",
+    "given_name": "Robyn",
+    "family_name": "Krushinsky",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "3X918WJ7RS04NCZDP017WMZPB8",
+    "created_at": "2024-08-07T01:25:28.811Z",
+    "updated_at": "2024-08-07T01:26:55Z",
+    "given_name": "Rudy",
+    "family_name": "L",
+    "email_address": "rudy_lara@hotmail.com",
+    "phone_number": "+18017597696",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "birthday": "2025-03-07",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4"
+    ],
+    "version": 0
+  },
+  {
+    "id": "70793MHXSFE69JZEG05WX0HWX0",
+    "created_at": "2024-08-16T17:41:07.372Z",
+    "updated_at": "2024-08-16T17:41:08Z",
+    "given_name": "Ruth",
+    "family_name": "Guerra",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.CHURN_RISK",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM"
+    ],
+    "version": 1
+  },
+  {
+    "id": "E98P2XTCDZHRD8XKGR78XK4ZMW",
+    "created_at": "2024-10-20T02:07:59.177Z",
+    "updated_at": "2024-10-23T01:37:51Z",
+    "given_name": "Samuel",
+    "family_name": "Martineau",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.LOYAL",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "1WZZFTB24T1BRBNZERQYM8QYNW",
+    "created_at": "2024-09-07T19:43:30.159Z",
+    "updated_at": "2024-09-07T19:43:30Z",
+    "given_name": "Sarah",
+    "family_name": "Hicken",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM"
+    ],
+    "version": 1
+  },
+  {
+    "id": "TY1HRCZW6A95DHM5NF4N2GQZ84",
+    "created_at": "2024-09-27T18:49:34.978Z",
+    "updated_at": "2024-09-27T19:15:14Z",
+    "given_name": "Sarah",
+    "family_name": "Kofoed",
+    "email_address": "sarockety@gmail.com",
+    "phone_number": "+12088669192",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "LOYALTY",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "91J0NQXKZ6N6APZH2S43776QVC",
+    "created_at": "2024-10-05T18:30:19.191Z",
+    "updated_at": "2024-10-05T18:30:19Z",
+    "given_name": "Savannah",
+    "family_name": "Navarro",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "JNXHE0SS9VVTN3BPA996TE6DDW",
+    "created_at": "2024-08-31T17:30:39.107Z",
+    "updated_at": "2024-08-31T17:30:39Z",
+    "given_name": "Savannah",
+    "family_name": "Roylance",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "NH5ZJY3Y9TF022R4EDPZG2NSNW",
+    "created_at": "2024-06-29T17:12:13.555Z",
+    "updated_at": "2024-06-29T17:12:14Z",
+    "given_name": "Scott",
+    "family_name": "James",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM"
+    ],
+    "version": 1
+  },
+  {
+    "id": "CVGQGGSYXND6QNS9WFMNQTZ5H8",
+    "created_at": "2024-10-26T21:39:59.47Z",
+    "updated_at": "2024-10-26T21:40:00Z",
+    "given_name": "Serena",
+    "family_name": "Mcintosh",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "A10P1YSD0D46GMF629KBC288R4",
+    "created_at": "2024-10-05T19:42:58.277Z",
+    "updated_at": "2024-10-05T19:42:59Z",
+    "given_name": "Sergio",
+    "family_name": "Rojas",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "GM0JVQKN1GB0VW8R51T4CC3BHM",
+    "created_at": "2024-09-17T16:28:11.094Z",
+    "updated_at": "2024-09-17T16:28:11Z",
+    "given_name": "Seth",
+    "family_name": "Elliott",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "QGX81XQT0A35QV7SHBS871V93W",
+    "created_at": "2024-10-13T19:04:39.047Z",
+    "updated_at": "2024-10-13T19:04:39Z",
+    "given_name": "Sklynn",
+    "family_name": "Basso",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "MNSTT1H8JZS48PEY5HDP61GXV8",
+    "created_at": "2024-09-16T19:15:27.627Z",
+    "updated_at": "2024-09-16T19:15:28Z",
+    "given_name": "Sophie",
+    "family_name": "Rees",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "R5C10HD3Q2QM5140A1V4NF2AFG",
+    "created_at": "2024-07-13T18:15:08.004Z",
+    "updated_at": "2024-07-13T18:15:08Z",
+    "given_name": "Susan",
+    "family_name": "Walters",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": ["gv2:1D5J0114X17BBES7S3D03C3FCM"],
+    "version": 1
+  },
+  {
+    "id": "RZK9ARA86D56K272B84J7TYRVM",
+    "created_at": "2024-08-10T00:21:52.311Z",
+    "updated_at": "2024-08-10T00:27:05Z",
+    "given_name": "Taci",
+    "phone_number": "+13852329420",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "version": 0
+  },
+  {
+    "id": "BXYG9CJQFH1ZSCX6F46HKKF1GC",
+    "created_at": "2024-11-01T18:02:15.927Z",
+    "updated_at": "2024-11-01T18:02:31Z",
+    "given_name": "Tammy",
+    "family_name": "Paynter",
+    "email_address": "tpaynter48@gmail.com",
+    "phone_number": "4352323395",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "4FTS3SNE9S70BAC4QE8CQ0H7QR",
+    "created_at": "2024-09-30T17:26:41.76Z",
+    "updated_at": "2024-10-01T14:41:18Z",
+    "cards": [
+      {
+        "id": "gftc:be0ae3f24674425295a5f8edbd5e218a",
+        "card_brand": "SQUARE_GIFT_CARD",
+        "last_4": "4824",
+        "exp_month": 12,
+        "exp_year": 2050,
+        "billing_address": {
+          "postal_code": "94117"
+        }
+      }
+    ],
+    "given_name": "Taylor",
+    "family_name": "Williams",
+    "email_address": "taylorwilliams791@gmail.com",
+    "phone_number": "4103505001",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.CARDS_ON_FILE",
+      "MLMY4PXA10S5H.REACHABLE",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4"
+    ],
+    "version": 0
+  },
+  {
+    "id": "5SSRJSGD2X3GQ1G2J7MT42KTCM",
+    "created_at": "2024-09-29T17:49:34.554Z",
+    "updated_at": "2024-10-05T18:10:03Z",
+    "given_name": "Trinity",
+    "email_address": "trinitymarion2002@gmail.com",
+    "phone_number": "2532450148",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "MERGE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 0
+  },
+  {
+    "id": "VZASZF7THRM3WHJAMJQM2HM1D8",
+    "created_at": "2024-10-27T20:46:53.327Z",
+    "updated_at": "2024-10-27T20:46:57Z",
+    "given_name": "Wendy",
+    "family_name": "Magana",
+    "phone_number": "18018571226",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 2
+  },
+  {
+    "id": "AJG5J9VE8D52VAM41FYY1X8MPM",
+    "created_at": "2024-10-08T02:44:47.252Z",
+    "updated_at": "2024-10-08T02:44:48Z",
+    "given_name": "Wesley",
+    "family_name": "Kawala",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "YKXGEQTB10K53XAACDK0M4SSY0",
+    "created_at": "2024-10-25T02:35:22.472Z",
+    "updated_at": "2024-10-25T02:35:23Z",
+    "given_name": "Ximena",
+    "family_name": "Viveros",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:4PZA627TXD3CZ4J7GWPFAM0GVG"
+    ],
+    "version": 1
+  },
+  {
+    "id": "6BWGTKK6XCRMFJRWGAX89QF1X0",
+    "created_at": "2024-06-08T16:36:51.699Z",
+    "updated_at": "2024-07-01T18:53:44Z",
+    "email_address": "amayasimp33@gmail.com",
+    "phone_number": "18014714160",
+    "preferences": {
+      "email_unsubscribed": false
+    },
+    "creation_source": "INSTANT_PROFILE",
+    "segment_ids": [
+      "MLMY4PXA10S5H.REACHABLE",
+      "MLMY4PXA10S5H.LOYALTY_ALL",
+      "gv2:Y0D86SJC4H5BKB6MP2641VPMG4",
+      "gv2:1D5J0114X17BBES7S3D03C3FCM",
+      "gv2:VR9J3G4A6D1TBDT95YER53R2CG"
+    ],
+    "version": 1
+  }
+]
