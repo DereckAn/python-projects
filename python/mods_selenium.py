@@ -177,27 +177,28 @@ class ModInfo:
         try:
             print(f"\nIntentando recolectar datos de: {url}")
 
-            # Get mod name - usando un selector más específico
+            # Get mod name
             print("Buscando nombre del mod...")
             try:
                 mod_name = wait.until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, "h1.text-2xl.font-extrabold"))
-                ).text
+                    EC.presence_of_element_located((By.TAG_NAME, "h1"))
+                ).text.strip()
                 print(f"✓ Nombre del mod encontrado: {mod_name}")
             except:
-                print("⚠ Intentando método alternativo para el nombre...")
-                mod_name = wait.until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, ".normal-page__header h1"))
-                ).text
+                mod_name = "No especificado"
+                print("⚠ No se encontró el nombre del mod")
 
-            # Get versions - buscando en la sección de Compatibility
+            # Get versions
             print("Buscando versiones...")
             try:
-                compatibility_section = wait.until(
-                    EC.presence_of_element_located((By.XPATH, "//h3[contains(text(), 'Minecraft: Java Edition')]/following-sibling::div[contains(@class, 'tag-list')]"))
+                versions_container = wait.until(
+                    EC.presence_of_element_located((
+                        By.XPATH,
+                        '//*[@id="__nuxt"]/div[3]/main/div[5]/div[6]/div[2]/div[1]/section[1]/div'
+                    ))
                 )
-                version_items = compatibility_section.find_elements(By.CLASS_NAME, "tag-list__item")
-                versions = [item.text for item in version_items if item.text]
+                version_divs = versions_container.find_elements(By.XPATH, './/div[contains(@class, "rounded-full")]')
+                versions = [div.text.strip() for div in version_divs if div.text.strip()]
                 versions_str = ", ".join(versions)
                 print(f"✓ Versiones encontradas: {versions_str}")
             except:
@@ -207,14 +208,18 @@ class ModInfo:
             # Get loaders (platforms)
             print("Buscando loaders...")
             try:
-                platforms_section = wait.until(
-                    EC.presence_of_element_located((By.XPATH, "//h3[contains(text(), 'Platforms')]/following-sibling::div[contains(@class, 'tag-list')]"))
+                platforms_container = wait.until(
+                    EC.presence_of_element_located((
+                        By.XPATH,
+                        '//*[@id="__nuxt"]/div[3]/main/div[5]/div[6]/div[2]/div[1]/section[2]/div'
+                    ))
                 )
-                platform_items = platforms_section.find_elements(By.CLASS_NAME, "tag-list__item")
+                platform_divs = platforms_container.find_elements(By.XPATH, './/div[contains(@class, "rounded-full")]')
                 platforms = []
-                for item in platform_items:
-                    # Obtener el texto sin el contenido SVG
-                    platform_text = item.get_attribute('textContent').strip()
+                for div in platform_divs:
+                    platform_text = div.get_attribute('textContent').strip()
+                    # Limpiar texto de SVG y comentarios
+                    platform_text = ''.join(c for c in platform_text if c.isalpha() or c.isspace()).strip()
                     if platform_text:
                         platforms.append(platform_text)
                 platforms_str = ", ".join(platforms)
@@ -226,24 +231,40 @@ class ModInfo:
             # Get environment type
             print("Buscando tipo de entorno...")
             try:
-                env_section = wait.until(
-                    EC.presence_of_element_located((By.XPATH, "//h3[contains(text(), 'Supported environments')]/following-sibling::div[contains(@class, 'tag-list')]"))
+                env_container = wait.until(
+                    EC.presence_of_element_located((
+                        By.XPATH,
+                        '//*[@id="__nuxt"]/div[3]/main/div[5]/div[6]/div[2]/div[1]/section[3]/div'
+                    ))
                 )
-                env_items = env_section.find_elements(By.CLASS_NAME, "tag-list__item")
-                env_type = env_items[0].get_attribute('textContent').strip() if env_items else "Not specified"
+                env_divs = env_container.find_elements(By.XPATH, './/div[contains(@class, "rounded-full")]')
+                env_types = []
+                for div in env_divs:
+                    env_text = div.get_attribute('textContent').strip()
+                    env_text = ''.join(c for c in env_text if c.isalpha() or c.isspace()).strip()
+                    if env_text:
+                        env_types.append(env_text)
+                env_type = ", ".join(env_types)
                 print(f"✓ Tipo de entorno encontrado: {env_type}")
             except:
                 env_type = "Not specified"
                 print("⚠ No se encontró tipo de entorno")
 
-            # Get Categories
+            # Get categories
             print("Buscando categorías...")
             try:
+                categories_container = wait.until(
+                    EC.presence_of_element_located((
+                        By.XPATH,
+                        '//*[@id="__nuxt"]/div[3]/main/div[5]/div[6]/div[1]/div/div[1]/div/div[2]/div[3]/div'
+                    ))
+                )
+                category_divs = categories_container.find_elements(By.XPATH, './/div[contains(@class, "rounded-full")]')
                 categories = []
-                category_items = driver.find_elements(By.CSS_SELECTOR, "div.flex.flex-wrap.gap-2 .tag-list__item")
-                for item in category_items:
-                    category_text = item.text.strip()
-                    if category_text and not any(char.isdigit() for char in category_text):
+                for div in category_divs:
+                    category_text = div.get_attribute('textContent').strip()
+                    category_text = category_text.replace('<!--[-->', '').replace('<!--]-->', '').strip()
+                    if category_text:
                         categories.append(category_text)
                 categories_str = ", ".join(categories)
                 print(f"✓ Categorías encontradas: {categories_str}")
@@ -262,7 +283,6 @@ class ModInfo:
                 'URL': url
             }
 
-            # Imprimir resumen de datos recolectados
             print("\n=== DATOS RECOLECTADOS ===")
             for key, value in mod_data.items():
                 print(f"{key}: {value}")
@@ -270,11 +290,6 @@ class ModInfo:
 
             return mod_data
 
-        except TimeoutException as e:
-            print(f"\n❌ Timeout esperando elementos en {url}")
-            print(f"Último elemento buscado: {e.msg}")
-            self.results_erros.append(url)
-            return None
         except Exception as e:
             print(f"\n❌ Error procesando {url}")
             print(f"Error específico: {str(e)}")
