@@ -82,6 +82,7 @@ try:
 
                         # Create safe filename
                         safe_name = re.sub(r'[<>:"/\\|?*]', '', item_name)
+                        safe_name = re.sub(r'\s+', '_', safe_name)  
                         webp_filename = images_dir / f'{safe_name}.webp'
 
                         # Convert and save as WebP
