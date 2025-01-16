@@ -5,6 +5,7 @@
 - Agregar la clave de acceso a la variable de entorno `SQUARE_ACCESS_TOKEN` en el archivo `.env`
 - Activar el ambiente virtual
 - Instalar las dependencias con `pip`. Solo si es necesario.
+- Puse los paquetes que tenemos que installar en el archivo `requirements.txt`
 - Hay muchos problemas a la hora de crear el script, si no funciona en el futuro, no es de gran importancia.
 - Esperar mucho tiempo. Aproximadamente como 15 min. Porque esta descargando las imagenes de square.
 
