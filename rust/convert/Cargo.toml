@@ -1,0 +1,26 @@
+[package]
+name = "image_converter"
+version = "0.1.0"
+edition = "2021"
+authors = ["Dereck Angles <dereck1998angeles@gmail.com>"]
+description = "A tool to convert images with context menu integration"
+license = "MIT"
+
+[dependencies]
+image = { version = "0.24", features = ["webp"] }  
+anyhow = "1.0"
+dirs = "5.0"
+rayon = "1.8"
+tokio = { version = "1.35", features = ["full"] }
+notify = "6.1"
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.52"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+core-foundation = "0.9"
+swift-bridge = "0.1"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+freedesktop_entry_parser = "1.3"
+
