@@ -28,8 +28,8 @@ def convert_to_webp(source_folder, destination_folder):
                 print(f'Error converting {filename}: {e}')
 
 # Carpeta de origen con las imágenes PNG
-# source_folder = '/Users/dereckangeles/Downloads/convert'
-source_folder = '/Users/dereckangeles/Downloads/raw'
+# source_folder = '/Users/dereckangeles/Downloads/convert' mac
+source_folder = 'C:/Users/derec/OneDrive/Desktop/pro'
 # Carpeta de destino para las imágenes WEBP
 destination_folder = './webp_images'
 
