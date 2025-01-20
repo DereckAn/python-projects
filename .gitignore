@@ -4,3 +4,7 @@ myenv
 dereck
 .vscode
 .env
+.fingerprint
+build
+deps
+.cargo-lock

@@ -1,0 +1,1 @@
+C:\Users\derec\Documents\GIT\python-projects\rust\convert\target\release\image_converter.exe: C:\Users\derec\Documents\GIT\python-projects\rust\convert\src\convert.rs C:\Users\derec\Documents\GIT\python-projects\rust\convert\src\main.rs C:\Users\derec\Documents\GIT\python-projects\rust\convert\src\menu_installer.rs
