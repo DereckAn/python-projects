@@ -4,31 +4,62 @@ use anyhow::Result;
 pub fn install() -> Result<()> {
     use winreg::enums::*;
     use winreg::RegKey;
-    
-    let hkcu = RegKey::predef(HKEY_CLASSES_ROOT);
-    
-    // Create main menu
-    let (convert_key, _) = hkcu.create_subkey(r"*\shell\Convert")?;
+
+    // Apuntamos a HKEY_CLASSES_ROOT
+    let hkcr = RegKey::predef(HKEY_CLASSES_ROOT);
+
+    // 1) Creamos la clave principal "*\shell\ImageConverter"
+    let (convert_key, _) = hkcr.create_subkey(r"*\shell\ImageConverter")?;
+    // Texto que aparecerá en el menú principal
     convert_key.set_value("", &"Convert to")?;
-    convert_key.set_value("SubCommands", &"")?;
-    
-    // Create submenus for each format
-    let (commands_key, _) = hkcu.create_subkey(r"*\shell\Convert\shell")?;
-    
-    let formats = ["webp", "png", "jpg", "raw"];
-    
-    for format in formats {
-        let (format_key, _) = commands_key.create_subkey(format)?;
-        format_key.set_value("", &format!("Convert to {}", format.to_uppercase()))?;
-        
-        let (command_key, _) = format_key.create_subkey("command")?;
+    convert_key.set_value("MUIVerb", &"Convert to")?;
+    // Icono opcional (shell32.dll,277 es un ícono genérico)
+    convert_key.set_value("Icon", &"shell32.dll,277")?;
+
+    // 2) Lista de formatos que manejará tu conversión
+    let formats = [
+        "bmp", "eps", "exr", "gif", "ico", 
+        "jpg", "png", "svg", "tga", "tiff", 
+        "wbmp", "webp"
+    ];
+
+    // 3) Construimos el valor "SubCommands", que es un string con cada subcomando separado por ";"
+    let subcommands = formats
+        .iter()
+        .map(|f| format!("ImageConverter.{}", f))
+        .collect::<Vec<_>>()
+        .join(";");
+
+    // 4) Asignamos ese string para que Windows sepa que hay subopciones (SubCommands)
+    convert_key.set_value("SubCommands", &subcommands)?;
+
+    // 5) Creamos las claves para cada subcomando en:
+    // "HKEY_CLASSES_ROOT\Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\..."
+    let (command_store_key, _) = hkcr.create_subkey(
+        r"Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell"
+    )?;
+
+    for format in &formats {
+        // Nombre de cada subcomando, p.ej. "ImageConverter.bmp"
+        let subcommand_name = format!("ImageConverter.{}", format);
+        let (subcommand_key, _) = command_store_key.create_subkey(&subcommand_name)?;
+
+        // Texto que se mostrará en el menú (ej. "Convert to BMP")
+        subcommand_key.set_value("", &format!("Convert to {}", format.to_uppercase()))?;
+
+        // Creamos la subclave "command" y su valor
+        let (command_key, _) = subcommand_key.create_subkey("command")?;
+
+        // Tu ejecutable actual y el comando:
+        // => "C:\ruta\a\image_converter.exe convert <formato> "%1""
         let exe_path = std::env::current_exe()?;
         command_key.set_value(
-            "", 
-            &format!("\"{}\" {} \"%V\"", exe_path.display(), format)
+            "",
+            &format!("\"{}\" convert {} \"%1\"", exe_path.display(), format)
         )?;
     }
-    
+
+    println!("Context menu instalado correctamente (con submenús).");
     Ok(())
 }
 
@@ -37,17 +68,20 @@ pub fn uninstall() -> Result<()> {
     use winreg::enums::*;
     use winreg::RegKey;
 
-    let hkcu = RegKey::predef(HKEY_CLASSES_ROOT);
-    
-    // El subkey que se creó en install:
-    let path_main = r"*\shell\Convert";
-    if let Ok(_) = hkcu.delete_subkey_all(path_main) {
-        println!("Registro '{}' eliminado correctamente.", path_main);
-    } else {
-        println!("No se pudo eliminar '{}'. Tal vez ya estaba eliminado.", path_main);
+    let hkcr = RegKey::predef(HKEY_CLASSES_ROOT);
+
+    // Eliminar el menú principal
+    let path_main = r"*\shell\ImageConverter";
+    if hkcr.delete_subkey_all(path_main).is_ok() {
+        println!("Menú principal eliminado correctamente.");
     }
 
-    // Si hace falta borrar más cosas, agrégalo aquí.
+    // Eliminar los comandos almacenados (CommandStore)
+    let path_commands = r"Software\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\ImageConverter";
+    if hkcr.delete_subkey_all(path_commands).is_ok() {
+        println!("Comandos eliminados correctamente.");
+    }
+
     Ok(())
 }
 

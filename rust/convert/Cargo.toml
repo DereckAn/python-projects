@@ -7,7 +7,7 @@ description = "A tool to convert images with context menu integration"
 license = "MIT"
 
 [dependencies]
-image = { version = "0.24", features = ["webp"] }  
+image = { version = "0.24", features = ["webp", "png", "jpeg", "gif", "tiff", "ico", "bmp", "tga", "exr"] }
 anyhow = "1.0"
 dirs = "5.0"
 rayon = "1.8"
