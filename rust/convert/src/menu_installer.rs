@@ -86,119 +86,116 @@ pub fn uninstall() -> Result<()> {
 }
 
 #[cfg(target_os = "macos")]
-pub fn install() -> Result<()> {
+pub fn install() -> anyhow::Result<()> {
     use std::fs;
     use std::path::PathBuf;
-    
+
     let home = dirs::home_dir().unwrap();
     let services_dir = home.join("Library/Services");
-    
-    // Crear Quick Actions usando el nuevo formato
-    let formats = ["webp", "png", "jpg", "raw"];
-    
-    for format in formats {
-        let workflow_dir = services_dir.join(format!("ConvertTo{}.workflow", format.to_uppercase()));
-        fs::create_dir_all(&workflow_dir)?;
-        
-        // Crear document.wflow (nuevo formato XML)
-        let workflow = format!(
-            r#"<?xml version="1.0" encoding="UTF-8"?>
-            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-            <plist version="1.0">
+
+    // Crea un solo directorio "ConvertTo.workflow"
+    let workflow_dir = services_dir.join("ConvertTo.workflow");
+    std::fs::create_dir_all(&workflow_dir)?;
+
+    // Creamos un script que pida al usuario un formato
+    // y llame a nuestro binario con ese formato.
+    // Podrías personalizarlo para mostrar más opciones.
+    let script = format!(
+        r#"#!/bin/bash
+
+# Pide al usuario un formato con AppleScript
+FORMAT=$(osascript <<EOT
+set formatList to {{"bmp", "eps", "exr", "gif", "ico", "jpg", "png", "svg", "tga", "tiff", "wbmp", "webp"}}
+set chosenFormat to choose from list formatList with prompt "Convert to format:" default items {{"png"}} OK button name "Select" cancel button name "Cancel"
+if chosenFormat is false then
+    return "CANCELLED"
+else
+    return item 1 of chosenFormat
+end if
+EOT
+)
+
+if [ "$FORMAT" = "CANCELLED" ]; then
+    echo "User cancelled conversion."
+    exit 0
+fi
+
+# Invoca el binario con el formato seleccionado
+\"{0}\" convert "$FORMAT" "$@"
+"#,
+        std::env::current_exe()?.display()
+    );
+
+    // En macOS Ventura o superior, se usan archivos .wflow en vez de .workflow antiguos.
+    // Pero con Automator sigue funcionando la estructura .workflow que incluye "document.wflow".
+    fs::write(workflow_dir.join("document.wflow"), script)?;
+
+    // Creamos un Info.plist que defina un único servicio "Convert to …"
+    let info_plist = r#"<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" 
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSServices</key>
+    <array>
+        <dict>
+            <key>NSMenuItem</key>
             <dict>
-                <key>AMApplicationBuild</key>
-                <string>521.1</string>
-                <key>AMApplicationVersion</key>
-                <string>2.10</string>
-                <key>AMDocumentVersion</key>
-                <string>2</string>
-                <key>actions</key>
-                <array>
-                    <dict>
-                        <key>action</key>
-                        <dict>
-                            <key>script</key>
-                            <string>#!/bin/bash
-                            "{}" {} "$@"</string>
-                        </dict>
-                    </dict>
-                </array>
+                <key>default</key>
+                <string>Convert to …</string>
             </dict>
-            </plist>"#,
-            std::env::current_exe()?.display(),
-            format
-        );
-        
-        fs::write(workflow_dir.join("document.wflow"), workflow)?;
-        
-        // Crear Info.plist moderno
-        let info_plist = format!(
-            r#"<?xml version="1.0" encoding="UTF-8"?>
-            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-            <plist version="1.0">
-            <dict>
-                <key>NSServices</key>
-                <array>
-                    <dict>
-                        <key>NSMenuItem</key>
-                        <dict>
-                            <key>default</key>
-                            <string>Convert to {}</string>
-                        </dict>
-                        <key>NSMessage</key>
-                        <string>runWorkflowAsService</string>
-                        <key>NSRequiredFileTypes</key>
-                        <array>
-                            <string>public.image</string>
-                        </array>
-                        <key>NSSendFileTypes</key>
-                        <array>
-                            <string>public.image</string>
-                        </array>
-                    </dict>
-                </array>
-            </dict>
-            </plist>"#,
-            format.to_uppercase()
-        );
-        
-        fs::write(workflow_dir.join("Info.plist"), info_plist)?;
-    }
-    
-    // Registrar los servicios usando el nuevo API
+            <key>NSMessage</key>
+            <string>runWorkflowAsService</string>
+            <key>NSRequiredFileTypes</key>
+            <array>
+                <string>public.image</string>
+            </array>
+            <key>NSSendFileTypes</key>
+            <array>
+                <string>public.image</string>
+            </array>
+        </dict>
+    </array>
+</dict>
+</plist>
+"#;
+
+    fs::write(workflow_dir.join("Info.plist"), info_plist)?;
+
+    // Registrar los servicios
     let status = std::process::Command::new("launchctl")
-        .args(&["load", "-w", "/System/Library/LaunchAgents/com.apple.ServicesUIAgent.plist"])
+        .args(["load", "-w", "/System/Library/LaunchAgents/com.apple.ServicesUIAgent.plist"])
         .status()?;
-        
+
     if !status.success() {
         return Err(anyhow::anyhow!("Failed to register services"));
     }
-    
+
+    println!("'Convert to …' Quick Action instalada en macOS.");
     Ok(())
 }
 
 #[cfg(target_os = "macos")]
-pub fn uninstall() -> Result<()> {
+pub fn uninstall() -> anyhow::Result<()> {
     use std::fs;
     use std::path::PathBuf;
 
     let home = dirs::home_dir().unwrap();
     let services_dir = home.join("Library/Services");
-    
-    let formats = ["webp", "png", "jpg", "raw"];
-    for format in formats {
-        let workflow_dir = services_dir.join(format!("ConvertTo{}.workflow", format.to_uppercase()));
-        if workflow_dir.exists() {
-            fs::remove_dir_all(&workflow_dir)?;
-            println!("Eliminado Quick Action: {:?}", workflow_dir);
-        }
+    let workflow_dir = services_dir.join("ConvertTo.workflow");
+
+    if workflow_dir.exists() {
+        fs::remove_dir_all(&workflow_dir)?;
+        println!("Eliminada Quick Action: {:?}", workflow_dir);
+    } else {
+        println!("No existe la carpeta {:?}", workflow_dir);
     }
 
-    // Comando para desregistrar servicios:
+    // Recargamos el agente de servicios para que la opción desaparezca del menú contextual
     let status = std::process::Command::new("launchctl")
-        .args(&["load", "-w", "/System/Library/LaunchAgents/com.apple.ServicesUIAgent.plist"])
+        .args(["load", "-w", "/System/Library/LaunchAgents/com.apple.ServicesUIAgent.plist"])
         .status()?;
-    
+
     if !status.success() {
         println!("Advertencia: no se pudo refrescar los servicios en macOS. Hazlo manualmente si es necesario.");
     }

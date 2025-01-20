@@ -8,3 +8,5 @@ dereck
 build
 deps
 .cargo-lock
+debug
+.DS_Store
