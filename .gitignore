@@ -10,3 +10,4 @@ deps
 .cargo-lock
 debug
 .DS_Store
+product_images
