@@ -7,9 +7,10 @@ python -m venv nombre_entorno_virtual
 # Activar ambiente virtual
 ``` bash
 source myenv/bin/activate
+source /Users/dereckangeles/Documents/GIT/python-projects/dereck/bin/activate 
 ```
 
-``` bash
+``` powershell
 myenv\Scripts\activate
 ```
 
