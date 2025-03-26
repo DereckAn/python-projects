@@ -27,8 +27,8 @@ def convert_raw_to_jpg_png(input_folder, output_folder, output_format='jpg'):
             print(f"Convertido: {filename} -> {os.path.basename(output_path)}")
 
 # Uso del script
-input_folder = '/Users/dereckangeles/Downloads/fotos_poster'
-output_folder = '/Users/dereckangeles/Downloads/fotos_poster2'
+input_folder = '/Users/dereckangeles/Documents/03:25:25'
+output_folder = '/Users/dereckangeles/Documents/hola2'
 output_format = 'jpg'  # o 'png'
 
 convert_raw_to_jpg_png(input_folder, output_folder, output_format)
