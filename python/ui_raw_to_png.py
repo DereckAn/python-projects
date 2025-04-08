@@ -296,6 +296,11 @@ class RawConverterUI(QMainWindow):
         # Habilitar el botón solo si se han seleccionado ambas carpetas
         self.convert_btn.setEnabled(bool(self.input_folder and self.output_folder))
     
+    def update_progress(self, progress, status_msg):
+        # Actualizar la barra de progreso y el mensaje de estado
+        self.progress_bar.setValue(progress)
+        self.status_label.setText(status_msg)
+    
     def start_conversion(self):
         if not self.input_folder or not self.output_folder:
             return
