@@ -3,19 +3,19 @@ import subprocess
 import importlib
 
 # Verificar e instalar paquetes necesarios
-def check_and_install_packages():
-    required_packages = ['pywhatkit', 'schedule']
-    for package in required_packages:
-        try:
-            importlib.import_module(package)
-            print(f"✓ {package} ya está instalado")
-        except ImportError:
-            print(f"✗ {package} no está instalado. Instalando...")
-            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-            print(f"✓ {package} ha sido instalado correctamente")
+# def check_and_install_packages():
+#     required_packages = ['pywhatkit', 'schedule']
+#     for package in required_packages:
+#         try:
+#             importlib.import_module(package)
+#             print(f"✓ {package} ya está instalado")
+#         except ImportError:
+#             print(f"✗ {package} no está instalado. Instalando...")
+#             subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+#             print(f"✓ {package} ha sido instalado correctamente")
 
-# Ejecutar la verificación de paquetes
-check_and_install_packages()
+# # Ejecutar la verificación de paquetes
+# check_and_install_packages()
 
 # Ahora importamos los paquetes necesarios
 import pywhatkit as kit
