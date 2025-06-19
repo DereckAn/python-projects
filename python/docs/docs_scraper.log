@@ -1,0 +1,9 @@
+2025-06-19 05:09:33,925 - INFO - Iniciando scraping desde https://docs.fabricmc.net/develop/
+2025-06-19 05:09:33,927 - INFO - Los archivos se guardarán en /Users/laruina/Documents/GIT/python-projects/python/docs/docs_output
+2025-06-19 05:09:33,933 - INFO - Procesando: https://docs.fabricmc.net/develop/
+2025-06-19 05:09:34,298 - INFO - Guardado: ./docs_output/develop.md
+2025-06-19 05:09:35,308 - INFO - Progreso: 1 páginas procesadas, 1 en cola
+2025-06-19 05:09:35,309 - INFO - Procesando: https://docs.fabricmc.net/contributing
+2025-06-19 05:09:35,602 - INFO - Guardado: ./docs_output/contributing.md
+2025-06-19 05:09:36,609 - INFO - Progreso: 2 páginas procesadas, 0 en cola
+2025-06-19 05:09:36,610 - INFO - Scraping completado. Páginas procesadas: 2
